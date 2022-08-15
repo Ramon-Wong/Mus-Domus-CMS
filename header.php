@@ -3,9 +3,13 @@
 <head>
     <title>Page Layout</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="#">
+
 </head>
   
 <body>
+
+
 
     <header>
         <div class="wrap">
@@ -15,13 +19,13 @@
     </header>
 
     <nav class="menu">
-    <a href="#" id="button1">Page 1</a>
-    <a href="#" id="button2">Page 2</a>
-    <a href="#" id="button3">Page 3</a>
-    <a href="#" id="button4">Page 4</a>
+        <a href="#" id="button1">Page 1</a>
+        <a href="#" id="button2">Page 2</a>
+        <a href="#" id="button3">Page 3</a>
+        <a href="#" id="button4">Page 4</a>
 
-    <div class="menu-log">
-        <a href="#" id="button5">LOGIN</a>
-    </div>
+        <div class="menu-log">
+            <a href="#" id="button5">LOGIN</a>
+        </div>
     
     </nav>
