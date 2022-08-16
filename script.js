@@ -9,7 +9,7 @@ for(let x in Pages){
 }
 
 content         = document.getElementById("content").getElementsByClassName("wrap")[0];
-ReadFile("http://192.168.1.100/TestCMS/test.php?page=1&value=nothing");
+ReadFile("http://192.168.1.100/Mus-Domus-CMS/test.php?page=1&value=nothing");
 
 
 function ReadFile(path){
@@ -36,10 +36,10 @@ function validateForm(){
     console.log("posting form info")
 }
 
-function funct1(){  ReadFile("http://192.168.1.100/TestCMS/test.php?page=1&value=nothing");} 
-function funct2(){  ReadFile("http://192.168.1.100/TestCMS/test.php?page=2&value=nothing");} 
-function funct3(){  ReadFile("http://192.168.1.100/TestCMS/test.php?page=3&value=nothing");} 
-function funct4(){  ReadFile("http://192.168.1.100/TestCMS/test.php?page=4&value=nothing");}
+function funct1(){  ReadFile("http://192.168.1.100/Mus-Domus-CMS/test.php?page=1&value=nothing");} 
+function funct2(){  ReadFile("http://192.168.1.100/Mus-Domus-CMS/test.php?page=2&value=nothing");} 
+function funct3(){  ReadFile("http://192.168.1.100/Mus-Domus-CMS/test.php?page=3&value=nothing");} 
+function funct4(){  ReadFile("http://192.168.1.100/Mus-Domus-CMS/test.php?page=4&value=nothing");}
 
 function funct5(){
     function AddBr(){
