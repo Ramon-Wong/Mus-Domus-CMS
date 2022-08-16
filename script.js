@@ -2,7 +2,9 @@ var Pages       = ["button1", "button2", "button3", "button4", "button5"];
 var Functions   = [funct1, funct2, funct3, funct4, funct5];
 var Elements    = [];
 var content;
-var Path1        = "http://192.168.1.100/Mus-Domus-CMS/test.php?";
+
+var Path1        =  siteUrl + "test.php?";
+console.log( Path1);
 
 
 for(let x in Pages){

@@ -3,7 +3,17 @@
     include 'header.php';
 
     $key = generateKey();    
+    //$url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+    $url =  "{$_SERVER['REQUEST_URI']}";
 ?>
+
+    <script>
+        sessionStorage.setItem("user_key",  "<?php echo $key; ?>");
+        sessionStorage.setItem("url",       "<?php echo $url; ?>");
+
+        var siteUrl = "<?php echo $url; ?>";
+    </script>
+
 
     <main id= "content">
 
@@ -22,9 +32,4 @@
 </body>
 
     <script type="text/javascript" src="script.js"></script>
-    <script>
-
-    sessionStorage.setItem("user_key", "<?php echo $key; ?>");
-
-    </script>
 </html>
