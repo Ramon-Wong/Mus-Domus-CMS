@@ -30,6 +30,7 @@
     </footer>    
 
 </body>
-
+    <script type="text/javascript" src="functions.js"></script>
     <script type="text/javascript" src="script.js"></script>
+
 </html>
