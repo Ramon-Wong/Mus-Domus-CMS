@@ -78,7 +78,7 @@ function funct5(){
     form.appendChild(AddBr());
     form.appendChild(AddLbl("Password"));
     form.appendChild(AddBr());
-    form.appendChild(AddInputText("text", "pass", "pass"));
+    form.appendChild(AddInputText("password", "pass", "pass"));
     form.appendChild(AddBr());
     form.appendChild(AddBr());
     form.appendChild(input3);
