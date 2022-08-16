@@ -2,6 +2,8 @@ var Pages       = ["button1", "button2", "button3", "button4", "button5"];
 var Functions   = [funct1, funct2, funct3, funct4, funct5];
 var Elements    = [];
 var content;
+var Path1        = "http://192.168.1.100/Mus-Domus-CMS/test.php?";
+
 
 for(let x in Pages){
     Elements[x] = document.getElementById(Pages[x]);
@@ -9,10 +11,10 @@ for(let x in Pages){
 }
 
 content         = document.getElementById("content").getElementsByClassName("wrap")[0];
-ReadFile("http://192.168.1.100/Mus-Domus-CMS/test.php?page=1&value=nothing");
+Recuperare_Recordum( Path1 + "page=1&value=nothing");
 
-
-function ReadFile(path){
+/*  Read or get data of pages    */
+function Recuperare_Recordum(path){
     var xhr = new XMLHttpRequest();
 
     xhr.open('GET', path, true);
@@ -32,14 +34,28 @@ function ReadFile(path){
     xhr.send();
 }
 
-function validateForm(){
-    console.log("posting form info")
+
+
+function ValidateEmail(input) {
+
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    var result = false;
+
+    if (input.value.match(validRegex)) {
+        console.log("Valid email");
+        result = true;
+    } else {
+        console.log("Not an email");
+        result = false;
+    }
+
+    return result;
 }
 
-function funct1(){  ReadFile("http://192.168.1.100/Mus-Domus-CMS/test.php?page=1&value=nothing");} 
-function funct2(){  ReadFile("http://192.168.1.100/Mus-Domus-CMS/test.php?page=2&value=nothing");} 
-function funct3(){  ReadFile("http://192.168.1.100/Mus-Domus-CMS/test.php?page=3&value=nothing");} 
-function funct4(){  ReadFile("http://192.168.1.100/Mus-Domus-CMS/test.php?page=4&value=nothing");}
+function funct1(){  Recuperare_Recordum( Path1 + "page=1&value=nothing");    console.log(sessionStorage.getItem("user_key"));} 
+function funct2(){  Recuperare_Recordum( Path1 + "page=2&value=nothing");    console.log(sessionStorage.getItem("user_key"));} 
+function funct3(){  Recuperare_Recordum( Path1 + "page=3&value=nothing");    console.log(sessionStorage.getItem("user_key"));} 
+function funct4(){  Recuperare_Recordum( Path1 + "page=4&value=nothing");    console.log(sessionStorage.getItem("user_key"));}
 
 function funct5(){
     function AddBr(){
@@ -66,15 +82,14 @@ function funct5(){
     var form = document.createElement("form");
     form.setAttribute("name", "login_forms");
     form.setAttribute("method", "post");
-    form.setAttribute("action", "submit.php");
 
     var input3 = document.createElement("input");
     input3.setAttribute("type", "submit");
     input3.setAttribute("value", "submit");
 
-    form.appendChild(AddLbl("username"));
+    form.appendChild(AddLbl("useremail"));
     form.appendChild(AddBr());
-    form.appendChild(AddInputText("text", "uname", "uname"));
+    form.appendChild(AddInputText("text", "email", "email"));
     form.appendChild(AddBr());
     form.appendChild(AddLbl("Password"));
     form.appendChild(AddBr());
@@ -83,21 +98,36 @@ function funct5(){
     form.appendChild(AddBr());
     form.appendChild(input3);
 
-    console.log( content);
     content.innerHTML = "";
     content.appendChild(form);
 
     form.addEventListener('submit', function(evt){
         evt.preventDefault();
 
-        var formData = new FormData(form);
+        if( ValidateEmail(form.email) == true){
+            console.log("sending data to login.php");
+            var formData = new FormData(form);
 
-        var object = {};
-    
-        formData.forEach(function(value, key){
-            object[key] = value;
-        });
-        console.log(JSON.stringify(object));
+            var object = {};
+
+            formData.forEach(function(value, key){
+                object[key] = value;
+            });
+            var obj = JSON.stringify(object);
+            // console.log(obj);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "login.php", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(obj);
+
+            xhr.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+
+                    console.log(this.responseText);
+
+                }
+            }
+        }
     });    
 }
-
