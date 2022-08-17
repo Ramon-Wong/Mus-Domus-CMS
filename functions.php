@@ -13,22 +13,7 @@
         return implode($key);
     }
 
-    
-    function ReadData($path){
-        $file = fopen($path, "r") or die("Unable to open file!");
-        $contents = '';
-
-        while (!feof($file)) {
-          $contents .= fread($file, 8192);
-        }
-        echo $contents;
-
-        fclose($file);
-    }
-
-
     function Read_UsersData($path){
-        echo "<br>Read Users Data";
         $file = fopen($path, "r") or die("<br>Unable to open file!");
         $contents = '';
 
