@@ -2,6 +2,7 @@
     include 'functions.php';
     include 'header.php';
 
+    
     $key = generateKey();    
     //$url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
     $url =  "{$_SERVER['REQUEST_URI']}";
