@@ -34,4 +34,20 @@
         fclose($file);
     }
 
+    function Password_encrypt_decrypt($action, $secret_iv, $secret_key, $string) {
+        $output = false;
+        $encrypt_method = "AES-256-CBC";
+
+        if($action == 'encrypt') {
+            $output = openssl_encrypt($string, $encrypt_method, hash('sha256', $secret_key), 0, substr(hash('sha256', $secret_iv), 0, 16));
+            $output = base64_encode($output);
+        }
+        else if($action == 'decrypt') {
+            $output = openssl_decrypt(base64_decode($string), $encrypt_method, hash('sha256', $secret_key), 0, substr(hash('sha256', $secret_iv), 0, 16));
+        }
+        return $output;
+    }
+
+
+
 ?>
