@@ -16,6 +16,7 @@ content         = document.getElementById("content").getElementsByClassName("wra
 Recuperare_Recordum( Path1 + "page=1&value=nothing");
 
 
+
 function funct1(){  Recuperare_Recordum( Path1 + "page=1&value=nothing");    console.log(sessionStorage.getItem("user_key"));} 
 function funct2(){  Recuperare_Recordum( Path1 + "page=2&value=nothing");    console.log(sessionStorage.getItem("user_key"));} 
 function funct3(){  Recuperare_Recordum( Path1 + "page=3&value=nothing");    console.log(sessionStorage.getItem("user_key"));} 
@@ -88,7 +89,10 @@ function funct5(){
             xhr.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
 
-                    console.log(this.responseText);
+                    // can we change the contents of the javascript here?
+                    updateScriptContent(this.responseText);
+                    console.log("we can change the script content here");
+                    //console.log(this.responseText);
 
                 }
             }

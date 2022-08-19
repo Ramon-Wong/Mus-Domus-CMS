@@ -6,11 +6,20 @@
     $usersdata='[{"username":"admin@admin.com",     "password":"123456789"},
                  {"username":"user1@gmail.com",     "password":"Lorgar"}]';
 
+    $Salt_Peppah = ["stick","goose","becomes","care","stream","volleyball","secretary","illustrate","adjoining","treat",
+                    "available","stale","chin","peacefull","repeat","card","spooky","dangerous","melodic","banana",
+                    "tacit","breathe","strive","preach","tangible","distinct","miss","dusty","sharp","wire",
+                    "maintain","paltry","temper","add","long-term","jelly","acoustics","hilarious","damp","reach",
+                    "terrible","lush","umbrella","rambunctious","conduct","passenger","finicky","prickly","breakfast","numberless",
+                    "seashore","baseball","balance","behavior","fireman","tearful","queen","boil","uproot","scare",
+                    "liquid","ducks","relax","ornament","vigorous","slide","control","terrify","adhesive","search",
+                    "search","fertile","bubble","melted","prepare","harm","group","knee","event","balance",
+                    "stupendous","prescribe","board","start","subdued","inflate","cart","faint","body","knock",
+                    "slimy","agreement","trick","taboo","infamous","infest","quickest","receptive","previous","tightfisted"];
 
 
-
-    $iv_key = "";
-    $secret = "";
+    $iv_key = $Salt_Peppah[34];
+    $secret = $Salt_Peppah[69]; 
     //encrypt
     //decrypt
 
@@ -49,9 +58,19 @@
     if($result == 1){
         echo "Login Successful";
         password_hash($obj->pass, PASSWORD_DEFAULT);
+
+        $key = generateKey();
+        // Need to figure out how I can insert the key to the javascript session storage
+
+        $content = " sessionStorage.setItem('user_key',  'dum dum');
+                     sessionStorage.setItem('url',       " + "{$_SERVER['REQUEST_URI']}" +
+                     "sessionStorage.setItem('user_name', ''); ";
+
     }
     else{
+        // this will cause a problem since it will insert it into the javascript updateScriptContent
         echo "Login Failed";
+
     }
 
  ?>   

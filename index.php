@@ -2,16 +2,16 @@
     include 'functions.php';
     include 'header.php';
 
-    
-    $key = generateKey();    
     //$url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
     $url =  "{$_SERVER['REQUEST_URI']}";
+
 ?>
 
     <script>
-        sessionStorage.setItem("user_key",  "<?php echo $key; ?>");
-        sessionStorage.setItem("url",       "<?php echo $url; ?>");
-
+        sessionStorage.setItem("user_key",  "");
+        sessionStorage.setItem("url",       <?php echo "'".$url."'"; ?>);
+        sessionStorage.setItem("user_name", "");
+        
         var siteUrl = "<?php echo $url; ?>";
     </script>
 
@@ -33,5 +33,4 @@
 </body>
     <script type="text/javascript" src="functions.js"></script>
     <script type="text/javascript" src="script.js"></script>
-
 </html>

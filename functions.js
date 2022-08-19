@@ -36,3 +36,12 @@ function ValidateEmail(input) {
 
     return result;
 }
+
+
+function updateScriptContent(data){
+    body            = document.getElementsByTagName("body");
+    script          = body[0].getElementsByTagName("script")[0];
+
+    script.innerHTML = data;
+    console.log("we can change the script content here");
+}    
