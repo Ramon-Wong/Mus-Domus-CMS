@@ -5,7 +5,7 @@
         $key = array();
         $alphaLength = strlen($alphabet) - 1;
 
-        for ($i = 0; $i < 16; $i++) {
+        for ($i = 0; $i < 24; $i++) {
             $n = rand(0, $alphaLength);
             $key[] = $alphabet[$n];
         }

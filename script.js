@@ -13,14 +13,13 @@ for(let x in Pages){
 }
 
 content         = document.getElementById("content").getElementsByClassName("wrap")[0];
-Recuperare_Recordum( Path1 + "page=1&value=nothing");
+// home page
+Recuperare_Recordum( Path1 + "page=1&value=" + sessionStorage.getItem("user_key"));
 
-
-
-function funct1(){  Recuperare_Recordum( Path1 + "page=1&value=" + sessionStorage.getItem("user_key"));
-function funct2(){  Recuperare_Recordum( Path1 + "page=2&value=" + sessionStorage.getItem("user_key"));
-function funct3(){  Recuperare_Recordum( Path1 + "page=3&value=" + sessionStorage.getItem("user_key"));
-function funct4(){  Recuperare_Recordum( Path1 + "page=4&value=" + sessionStorage.getItem("user_key"));
+function funct1(){  Recuperare_Recordum( Path1 + "page=1&value=" + sessionStorage.getItem("user_key"));    console.log(sessionStorage.getItem("user_key"));} 
+function funct2(){  Recuperare_Recordum( Path1 + "page=2&value=" + sessionStorage.getItem("user_key"));    console.log(sessionStorage.getItem("user_key"));} 
+function funct3(){  Recuperare_Recordum( Path1 + "page=3&value=" + sessionStorage.getItem("user_key"));    console.log(sessionStorage.getItem("user_key"));} 
+function funct4(){  Recuperare_Recordum( Path1 + "page=4&value=" + sessionStorage.getItem("user_key"));    console.log(sessionStorage.getItem("user_key"));}
 
 function funct5(){
     function AddBr(){
