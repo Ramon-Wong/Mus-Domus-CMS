@@ -5,14 +5,19 @@
     //$url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
     $url =  "{$_SERVER['REQUEST_URI']}";
 
+    //$key = _generateKey();    
 ?>
 
     <script>
-        sessionStorage.setItem("user_key",  "");
-        sessionStorage.setItem("url",       <?php echo "'".$url."'"; ?>);
-        sessionStorage.setItem("user_name", "");
+        sessionStorage.setItem("user_key",  <?php echo "'".generateKey()."'" ?>);
+        sessionStorage.setItem("url",       <?php echo "{$_SERVER['REQUEST_URI']}" ?>);
+
         
         var siteUrl = "<?php echo $url; ?>";
+
+        console.log("user key?");
+        console.log( sessionStorage.getItem("user_key"));
+
     </script>
 
 

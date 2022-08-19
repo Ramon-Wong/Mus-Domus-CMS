@@ -3,7 +3,7 @@ var Functions   = [funct1, funct2, funct3, funct4, funct5];
 var Elements    = [];
 var content;
 
-var Path1        =  siteUrl + "test.php?";
+var Path1       =  sessionStorage.getItem("url") + "test.php?";
 console.log( Path1);
 
 
