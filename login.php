@@ -59,18 +59,11 @@
         echo "Login Successful";
         password_hash($obj->pass, PASSWORD_DEFAULT);
 
-        $key = generateKey();
-        // Need to figure out how I can insert the key to the javascript session storage
-
-        $content = " sessionStorage.setItem('user_key',  'dum dum');
-                     sessionStorage.setItem('url',       " + "{$_SERVER['REQUEST_URI']}" +
-                     "sessionStorage.setItem('user_name', ''); ";
-
+        echo ">> Login Succeed <<";
     }
     else{
-        // this will cause a problem since it will insert it into the javascript updateScriptContent
-        echo "Login Failed";
 
+        echo ">> Login Failed <<";
     }
 
  ?>   

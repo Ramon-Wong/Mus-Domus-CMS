@@ -88,12 +88,7 @@ function funct5(){
 
             xhr.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
-
-                    // can we change the contents of the javascript here?
-                    updateScriptContent(this.responseText);
-                    console.log("we can change the script content here");
-                    //console.log(this.responseText);
-
+                    console.log(this.responseText);
                 }
             }
         }
