@@ -1,28 +1,24 @@
 <?php
 
-// store the request data in a variable
 $requestPayload = file_get_contents("php://input");
 $obj            = json_decode($requestPayload);
 
-// create the JSON Database
 $Database;
 
-//  $obj->key       = ranom generated key, this will be the unique identifier for the user
-//  $obj->type      = "page"
-//  $obj->page      = "login form"
-//  ok, this $Obj->type and %Obj->page is kinda confusing, will remove these two in the future.
 
-//  todo  
-//  - create JSON data base that only listener.php can access
-//          - JSON database will hold user's email and password
-//          - JSON database will hold page contents
-//          - JSON database will temporarily hold user's key
-//
-//  - create a function in listener.php that will create the JSON database
-//  - this function will be called when listener.php notices that the JSON database doesn't exist
-//  - the content will be reset to default values
-//  - The JSON database will be created in a simple text file format.
-//  - since it is created by listener.php, only www-data can access it
+
+$login_form     =  '<form action="login.php" method="post" class="login">
+                        <input type="text" name="username" placeholder="Username">
+                        <input type="password" name="password" placeholder="Password">
+
+                        <input type="button" value="clickme" onclick="doFunction();" />
+                    </form>';
+
+
+$login_style    =  '<link rel="stylesheet" href="style/login.css">';
+
+
+
 
 if( file_exists("/data/data.txt") == false){
     // okay, the JSON database doesn't exist, create it
@@ -42,6 +38,9 @@ if( file_exists("/data/data.txt") == false){
     // create the data.txt file if it doesn't exist
     if( file_exists("/data/data.txt") == false){
         $file = fopen("/data/data.txt", "w");
+
+        $Database = json_decode($str);
+
         fwrite($file, $str);
         fclose($file);
     }
@@ -60,22 +59,19 @@ if( file_exists("/data/data.txt") == false){
     }
 }
 
+    if( $obj->page != "login" ){
 
-echo $obj->page;
-
-
-
-/*
-    something Different, got some question for Copilot, hopefully this those people at Github have insert the code for Copilot
-    CoPilot, I wanna create a GPT3 model that can talk to the user and respond to their questions, in audio format.
-    so is this doable?
-    If so, what language is the best to use for this? Libraries? and other sources?
-
-    I'm not sure if this is doable, but I'm sure I can do it.
-    Me: Good anser, I'll try if I can get some documentation on how to do this from OpenAI.
+        echo "Payload dump <br>";
+        echo var_dump($obj);
     
+        echo "<br>".$obj->page."<br>";
+        echo $Database->admin_user."<br>";
+        echo $Database->password."<br>";
+    }else{
+        echo $login_style;
+        echo $login_form;
+    }
 
-*/
 
 ?>
 
