@@ -17,7 +17,7 @@ $login_form     =  '<form action="login.php" method="post" class="login">
 
 
 $login_style    =  '<link rel="stylesheet" href="style/login.css">';
-$login_script   =  '<script src="script3.js"></script>';
+$login_script   =  '<script type="text/javascript">ShowMsg();</script>';
 
 
 
@@ -71,9 +71,10 @@ if( file_exists("/data/data.txt") == false){
         echo $Database->admin_user."<br>";
         echo $Database->password."<br>";
     }else{
-        echo $login_style;
-        echo $login_form;
+        //echo $login_style;
+        //echo $login_form;
         echo $login_script;
+        
     }
 
 

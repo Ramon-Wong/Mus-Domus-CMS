@@ -15,3 +15,26 @@ function RequestPage( path, string, element){
         }
     }    
 }
+
+
+function ShowMsg(){
+    console.log("Hello World");
+}
+
+
+/*  Validate Email  */
+function ValidateEmail(input) {
+
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    var result = false;
+
+    if (input.value.match(validRegex)) {
+        console.log("Valid email");
+        result = true;
+    } else {
+        console.log("Not an email");
+        result = false;
+    }
+
+    return result;
+}
