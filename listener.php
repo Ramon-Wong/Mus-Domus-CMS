@@ -49,17 +49,34 @@ if( file_exists("/data/data.txt") == false){
     
 }else{
 
-    // the JSON database exists, read it
-    $file = fopen("/data/data.txt", "r");
-    $str  = fread($file, filesize("/data/data.txt"));
-    fclose($file);
-
-    // Decode and dump the JSON data to the $Database variable
-    $Database = json_decode($str);
+    // check if $Database is empty
+    if( empty($Database) ){
+        // okay, the JSON database exists, dump it to the $Database variable
+        $file = fopen("/data/data.txt", "r");
+        $Database = fread($file, filesize("/data/data.txt"));
+        fclose($file);
+        // Decode and dump the JSON data to the $Database variable
+        $Database = json_decode($str);
+    }
 }
 
 
 echo $obj->page;
 
 
+
+/*
+    something Different, got some question for Copilot, hopefully this those people at Github have insert the code for Copilot
+    CoPilot, I wanna create a GPT3 model that can talk to the user and respond to their questions, in audio format.
+    so is this doable?
+    If so, what language is the best to use for this? Libraries? and other sources?
+
+    I'm not sure if this is doable, but I'm sure I can do it.
+    Me: Good anser, I'll try if I can get some documentation on how to do this from OpenAI.
+    
+
+*/
+
 ?>
+
+

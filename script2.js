@@ -1,3 +1,4 @@
+
 function RequestPage( path, string, element){
 
     var xhr = new XMLHttpRequest();
