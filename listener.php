@@ -11,11 +11,14 @@ $login_form     =  '<form action="login.php" method="post" class="login">
                         <input type="text" name="username" placeholder="Username">
                         <input type="password" name="password" placeholder="Password">
 
-                        <input type="button" value="clickme" onclick="doFunction();" />
+                        <input id="Button6" type="button" value="clickme" />
+                        
                     </form>';
 
 
 $login_style    =  '<link rel="stylesheet" href="style/login.css">';
+$login_script   =  '<script src="script3.js"></script>';
+
 
 
 
@@ -70,6 +73,7 @@ if( file_exists("/data/data.txt") == false){
     }else{
         echo $login_style;
         echo $login_form;
+        echo $login_script;
     }
 
 
