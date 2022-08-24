@@ -6,23 +6,6 @@ $obj            = json_decode($requestPayload);
 $Database;
 
 
-
-$login_form     =  '<form action="login.php" method="post" class="login">
-                        <input type="text" name="username" placeholder="Username">
-                        <input type="password" name="password" placeholder="Password">
-
-                        <input id="Button6" type="button" value="clickme" />
-                        
-                    </form>';
-
-
-$login_style    =  '<link rel="stylesheet" href="style/login.css">';
-$login_script   =  '<script type="text/javascript">ShowMsg();</script>';
-
-
-
-
-
 if( file_exists("/data/data.txt") == false){
     // okay, the JSON database doesn't exist, create it
 
@@ -64,18 +47,29 @@ if( file_exists("/data/data.txt") == false){
 
     if( $obj->page != "login" ){
 
+        echo '<script type="text/javascript">
+        alert("Execute Javascript Code");
+        </script>';
+
+
         echo "Payload dump <br>";
         echo var_dump($obj);
     
         echo "<br>".$obj->page."<br>";
         echo $Database->admin_user."<br>";
         echo $Database->password."<br>";
-    }else{
-        //echo $login_style;
-        //echo $login_form;
-        echo $login_script;
-        
+
+        $model = null;
+        if(is_null($model)) {
+            echo "<script>console.log('yeah')</script>";
+        }
+
+
+
     }
+    // else{
+    //     echo "stuff";
+    // }
 
 
 ?>
