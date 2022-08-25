@@ -45,31 +45,48 @@ if( file_exists("/data/data.txt") == false){
     }
 }
 
-    if( $obj->page != "login" ){
-
-        echo '<script type="text/javascript">
-        alert("Execute Javascript Code");
-        </script>';
+$content        =  'content: '.$obj->type.' '.$obj->page;
+$Login_str      =  '{"Page": "Login", "ID": "Magicnumbers"}';
+$Page_str       =  '{"Page": "Page", "ID": "Magicnumbers", "PGE_Title": "Title", "PGE_Content": "'. $content. '"}';
 
 
-        echo "Payload dump <br>";
-        echo var_dump($obj);
+switch($obj->type){
+    case "login":
+        echo $Login_str;
+        break;
+
+    case "page":
+        echo $Page_str;
+        break;
+
+    default:
+        echo "stuff doesn't work out, !404";
+}
+
+
+
+
+
+
+
+// if( $obj->page != "login" ){
+
+//     echo "Payload dump <br>";
+//     echo var_dump($obj);
     
-        echo "<br>".$obj->page."<br>";
-        echo $Database->admin_user."<br>";
-        echo $Database->password."<br>";
+//     echo "<br>".$obj->page."<br>";
+//     echo "<br>".$obj->type."<br>";
+//     echo $Database->admin_user."<br>";
+//     echo $Database->password."<br>";
 
-        $model = null;
-        if(is_null($model)) {
-            echo "<script>console.log('yeah')</script>";
-        }
-
-
-
-    }
-    // else{
-    //     echo "stuff";
-    // }
+//     $model = null;
+//     if(is_null($model)) {
+//         echo "<script>console.log('yeah')</script>";
+//     }
+// }
+//     else{
+//         echo "stuff";
+//     }
 
 
 ?>

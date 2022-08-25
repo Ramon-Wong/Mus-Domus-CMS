@@ -18,7 +18,7 @@ function funct1(){ RequestPage("listener.php", JSON.parse('{"key": "' + key + '"
 function funct2(){ RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 2}'), content, function(){});}
 function funct3(){ RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 3}'), content, function(){});}
 function funct4(){ RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 4}'), content, function(){});}
-function funct5(){ RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": "login"}'), content, Formbuilder);}
+function funct5(){ RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "login"}'), content, function(){});}
 
 
 for(let x in Pages){

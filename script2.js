@@ -11,10 +11,41 @@ function RequestPage( path, string, element, funct){
 
     xhr.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            element.innerHTML = this.responseText;
+
+            console.log(this.responseText);
+
+            if( isJson(this.responseText) == true){
+                console.log("valid JSON");
+                var json = JSON.parse(this.responseText);
+
+                switch( json.Page ){
+                    case "Page":
+                        console.log("Page");
+                        element.innerHTML = json.PGE_Content;
+                        break;
+                    case "Login":
+                        console.log("Login");
+                        Formbuilder();
+                        break;
+                    default:
+                    console.log("not found!", json);
+                }
+            }
+            //     var json = JSON.parse(this.responseText);
+
+            // }
 
             funct();
         }
+    }
+
+    function isJson(str) {
+        try{
+            JSON.parse(str);
+        }catch(e){
+            return false;
+        }
+        return true;
     }    
 }
 
