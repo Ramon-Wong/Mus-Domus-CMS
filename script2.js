@@ -27,8 +27,11 @@ function RequestPage( path, string, element, funct){
                         console.log("Login");
                         Formbuilder();
                         break;
+                    case "Data":
+                        console.log(json.str);
+                        break;
                     default:
-                    console.log("not found!", json);
+                    console.log("Function RequestPage: not found!", json);
                 }
             }
             //     var json = JSON.parse(this.responseText);

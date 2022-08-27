@@ -6,16 +6,20 @@ $obj            = json_decode($requestPayload);
 $Database;
 
 
+
+
+
+
 if( file_exists("/data/data.txt") == false){
     // okay, the JSON database doesn't exist, create it
 
     $str    = '{"admin_user": "admin@admin.com", 
                 "password": "hashstuff", 
                 "key": "abcd", 
-                "page": [{"title": "page1", "content": "page1 content"},
-                         {"title": "page2", "content": "page2 content"},
-                         {"title": "page3", "content": "page3 content"},
-                         {"title": "page4", "content": "page4 content"}]}';
+                "page": [{"title": "page1", "content": "page 1 content"},
+                         {"title": "page2", "content": "page 2 content"},
+                         {"title": "page3", "content": "page 3 content"},
+                         {"title": "page4", "content": "page 4 content"}]}';
 
     // create the data folder if it doesn't exist
     if( file_exists("/data") == false){
@@ -45,9 +49,45 @@ if( file_exists("/data/data.txt") == false){
     }
 }
 
+//  getting content from Pages in $Database
+$page_content   = $Database->page[$obj->page - 1]->content;
+
 $content        =  'content: '.$obj->type.' '.$obj->page;
 $Login_str      =  '{"Page": "Login", "ID": "Magicnumbers"}';
-$Page_str       =  '{"Page": "Page", "ID": "Magicnumbers", "PGE_Title": "Title", "PGE_Content": "'. $content. '"}';
+$Page_str       =  '{"Page": "Page",  "ID": "Magicnumbers", "PGE_Title": "Title", "PGE_Content": "'. $page_content.'"}';
+$Init_str       =  '{"Page": "Data",  "str": "init => listener.php", "pages":"'. sizeof($Database->page) .'"}';
+$page_list      =  array();
+
+
+for($i = 0; $i < sizeof($Database->page); $i++){
+
+    $page_list[$i] = array_push($page_list, $Database->page[$i]->title);
+    // $page_list .= '['.$Database->page[$i]->title.']:['.$Database->page[$i]->content.']';
+}
+
+// convert json array to string
+// no answer CoPilot? 
+// ok, seems like I need to create a function to do this
+
+// function json_to_string($json){
+//     $str = "";
+//     foreach($json as $key => $value){
+//         $str .= $key . ": " . $value . " ";
+//     }
+//     return $str;
+// }
+
+function jsonarray_to_string($json){
+    $str = "";
+    foreach($json as $key => $value){
+        $str .= $key . ": " . $value . " ";
+    }
+    return $str;
+}
+
+// copilot, operator .= what does this do? gib examples please
+// $t .=
+
 
 
 switch($obj->type){
@@ -59,34 +99,13 @@ switch($obj->type){
         echo $Page_str;
         break;
 
+    case "init":
+        echo $Init_str;
+        break;
+
     default:
         echo "stuff doesn't work out, !404";
 }
-
-
-
-
-
-
-
-// if( $obj->page != "login" ){
-
-//     echo "Payload dump <br>";
-//     echo var_dump($obj);
-    
-//     echo "<br>".$obj->page."<br>";
-//     echo "<br>".$obj->type."<br>";
-//     echo $Database->admin_user."<br>";
-//     echo $Database->password."<br>";
-
-//     $model = null;
-//     if(is_null($model)) {
-//         echo "<script>console.log('yeah')</script>";
-//     }
-// }
-//     else{
-//         echo "stuff";
-//     }
 
 
 ?>

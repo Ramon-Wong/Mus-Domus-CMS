@@ -4,6 +4,14 @@ var content     = document.getElementById("content").getElementsByClassName("wra
 var main        = document.getElementById("content");
 
 
+var data;
+RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "init"}'), data, function(){});
+
+var my_object ={"Super Hero":["Iron Man", "Super Man"]};
+console.log(my_object);
+console.log(data);
+
+
 function test(){
     console.log("test");
 }
@@ -27,3 +35,10 @@ for(let x in Pages){
 }
 
 console.log(sessionStorage.getItem("url"));
+
+
+
+var Str_txt = '{"theTeam":[{"teamId":"1","status":"pending"},{"teamId":"2","status":"member"},{"teamId":"3","status":"member"}]}';
+var Obj_txt = JSON.parse(Str_txt);
+
+Str_txt.insert(0, "{");
