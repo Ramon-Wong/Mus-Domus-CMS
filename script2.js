@@ -9,30 +9,54 @@ function RequestPage( path, string, element, funct){
     var obj = JSON.stringify(string);
     xhr.send(obj);
 
+    var result;
+
     xhr.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
 
-            console.log(this.responseText);
+            console.log("receive messages: ", this.responseText);
 
             if( isJson(this.responseText) == true){
-                console.log("valid JSON");
-                var json = JSON.parse(this.responseText);
+
+                var json = JSON.parse(this.responseText);    
+                
+                
+                console.log("var dump: " + json);
 
                 switch( json.Page ){
-                    case "Page":
-                        console.log("Page");
-                        element.innerHTML = json.PGE_Content;
+                    case "page":
+                        console.log("page");
+                        element.innerHTML = JSON.stringify( json.PGE_Content);
                         break;
-                    case "Login":
-                        console.log("Login");
+                    case "login":
+                        console.log("login");
                         Formbuilder();
                         break;
-                    case "Data":
+                    case "data":
                         console.log(json.str);
                         break;
+
+                    case "nav":
+                        // the stuff I send => '{"Key":"'.$obj->key.'","Page":"'.$obj->type.'","Type":"'.$obj->page.'" ,"nav":'.$nstr.'}';
+                        //                      {"Key":"MEBwZdiVE8Yl7LRSYDelPzmq",
+                        //                       "Page":"nav",
+                        //                       "Type":"" ,
+                        //                       "nav":["Page 1","Page 2","Page 3","Page 4"]}
+                        element = this.responseText;
+                        result   = JSON.parse(this.responseText);
+                        console.log("key: " + json.Key);
+                        console.log("type: " + json.Page);
+                        console.log("nav: " + json.nav[0]); // this works.
+                        // copilot, how do you copy a json object?
+                        // example: 
+                    break;
+
                     default:
                     console.log("Function RequestPage: not found!", json);
                 }
+            }else{
+                console.log("Function RequestPage: not a json!");
+                // facepalm, this is not a json
             }
             //     var json = JSON.parse(this.responseText);
 
@@ -40,16 +64,17 @@ function RequestPage( path, string, element, funct){
 
             funct();
         }
+
     }
 
-    function isJson(str) {
-        try{
-            JSON.parse(str);
-        }catch(e){
-            return false;
-        }
-        return true;
+    xhr.done = function(){
+        console.log("done");
+        return  result;
     }    
+
+ 
+    // need to work on a return the json objects for other functions to use
+
 }
 
 
@@ -132,3 +157,13 @@ function Formbuilder(){
         }
     }); 
 }
+
+
+function isJson(str) {
+    try{
+        JSON.parse(str);
+    }catch(e){
+        return false;
+    }
+    return true;
+}   

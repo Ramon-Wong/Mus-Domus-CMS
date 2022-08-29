@@ -4,14 +4,6 @@ var content     = document.getElementById("content").getElementsByClassName("wra
 var main        = document.getElementById("content");
 
 
-var data;
-RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "init"}'), data, function(){});
-
-var my_object ={"Super Hero":["Iron Man", "Super Man"]};
-console.log(my_object);
-console.log(data);
-
-
 function test(){
     console.log("test");
 }
@@ -22,23 +14,33 @@ main.addEventListener("domcontentchanged", test);
 var key     = sessionStorage.getItem("key");
 // create javascript json with the key and the value
 
-function funct1(){ RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 1}'), content, function(){});}
-function funct2(){ RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 2}'), content, function(){});}
-function funct3(){ RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 3}'), content, function(){});}
-function funct4(){ RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 4}'), content, function(){});}
-function funct5(){ RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "login"}'), content, function(){});}
+function funct1(){ RequestPage("rListener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 1}'), content, function(){});}
+function funct2(){ RequestPage("rListener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 2}'), content, function(){});}
+function funct3(){ RequestPage("rListener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 3}'), content, function(){});}
+function funct4(){ RequestPage("rListener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 4}'), content, function(){});}
+function funct5(){ RequestPage("rListener.php", JSON.parse('{"key": "' + key + '", "type": "login"}'), content, function(){});}
 
 
 for(let x in Pages){
-    var Element = document.getElementById(Pages[x]);
-    Element.addEventListener("click", Functions[x]);
+    // var Element = document.getElementById(Pages[x]);
+    // Element.addEventListener("click", Functions[x]);
 }
 
 console.log(sessionStorage.getItem("url"));
 
 
+var MenuElement         = document.getElementsByClassName("menu")[0];
+MenuElement.innerHTML   = " STUFFFF";
 
-var Str_txt = '{"theTeam":[{"teamId":"1","status":"pending"},{"teamId":"2","status":"member"},{"teamId":"3","status":"member"}]}';
-var Obj_txt = JSON.parse(Str_txt);
+// create and initialize a json object.
+var json;
+var res;
+res = RequestPage("rListener.php", JSON.parse('{"key": "' + key + '", "type": "nav"}'), json, function(){});
 
-Str_txt.insert(0, "{");
+console.log("result:");
+// copilot. I need to convert json into string, please help me.
+console.log( res.Nav[0]);
+console.log("You should get the key or it's broken");
+
+// navigation bar set up here
+    // RequestPage("rListener.php", JSON.parse('{"key": "' + key + '", "type": "nav"}'), menu, function(){});
