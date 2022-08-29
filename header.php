@@ -15,11 +15,7 @@
         </div>    
     </header>
 
-    <nav class="menu"> 
-    </nav>
-
-
-    <!-- <nav class="menu">
+    <nav class="menu">
         <a href="#" id="button1">Page 1</a>
         <a href="#" id="button2">Page 2</a>
         <a href="#" id="button3">Page 3</a>
@@ -28,4 +24,4 @@
         <div class="menu-log">
             <a href="#" id="button5">LOGIN</a>
         </div>    
-    </nav>  -->
+    </nav> 

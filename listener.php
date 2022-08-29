@@ -85,10 +85,6 @@ function jsonarray_to_string($json){
     return $str;
 }
 
-// copilot, operator .= what does this do? gib examples please
-// $t .=
-
-
 
 switch($obj->type){
     case "login":
