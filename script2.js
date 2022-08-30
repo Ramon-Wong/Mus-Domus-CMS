@@ -1,4 +1,7 @@
 
+// need to change RequestPage, adding virtual functions and parameters
+
+
 function RequestPage( path, string, element){
 
     var xhr = new XMLHttpRequest();
