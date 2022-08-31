@@ -65,6 +65,8 @@ RequestPage.prototype.ShowPage    = function(){
 
 RequestPage.prototype.ShowLogin   = function(){
     console.log("ShowLogin stuff");
+
+    this._element.innerHTML = "Login stuff";    
 } 
 
 
