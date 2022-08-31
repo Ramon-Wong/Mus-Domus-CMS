@@ -17,7 +17,7 @@ function BuildForm(){
         lbl.innerHTML  = name;
         return lbl;
     }
-
+ 
     function AddInputText(type, id, name){
         var input   = document.createElement("input");
 
