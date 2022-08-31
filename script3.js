@@ -1,10 +1,5 @@
 
 
-// I figure out a way, to send a form in an simple array to build the form.
-// maybe in a combination of a json string and array
-// also need to insert virtual functions? or just parameters?
-
-
 
 function BuildForm(){
     function AddBr(){
