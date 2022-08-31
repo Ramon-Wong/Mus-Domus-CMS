@@ -1,5 +1,5 @@
 var Pages       = ["button1", "button2", "button3", "button4", "button5"];
-var Functions   = [funct1, funct2, funct3, funct4, BuildForm];
+var Functions   = [funct1, funct2, funct3, funct4, funct5];
 var content     = document.getElementById("content").getElementsByClassName("wrap")[0];
 
 // convert javascript string into a JSON object
@@ -11,7 +11,7 @@ function funct1(){      RequestPage("listener.php", JSON.parse('{"key": "' + key
 function funct2(){      RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 2}'), content);}
 function funct3(){      RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 3}'), content);}
 function funct4(){      RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 4}'), content);}
-//function funct5(){      RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": "login"}'), content);}
+function funct5(){      RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "login"}'), content);}
 
 for(let x in Pages){
     var Element = document.getElementById(Pages[x]);
