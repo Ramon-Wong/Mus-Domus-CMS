@@ -1,7 +1,4 @@
-
-// need to change RequestPage, adding virtual functions and parameters
-// need to create a seperate branch for this.
-
+// I commit to the wrong branch
 
 function RequestPage( path, string, element){
 
