@@ -1,14 +1,21 @@
 
+
+// I figure out a way, to send a form in an simple array to build the form.
+// maybe in a combination of a json string and array
+// also need to insert virtual functions? or just parameters?
+
+
+
 function BuildForm(){
     function AddBr(){
         return( document.createElement("br"));
     }
 
     function AddLbl(name){
-        var _lbl    = document.createElement("label");
-        _lbl.setAttribute("for",name);
-        _lbl.innerHTML  = name;
-        return _lbl;
+        var lbl    = document.createElement("label");
+        lbl.setAttribute("for",name);
+        lbl.innerHTML  = name;
+        return lbl;
     }
 
     function AddInputText(type, id, name){
@@ -21,13 +28,18 @@ function BuildForm(){
         return input;
     }
 
+    function AddInputSubmit( name){
+        var input   = document.createElement("input");
+
+        input.setAttribute("type", "submit");
+        input.setAttribute("value", "submit");
+
+        return input;
+    }
+
     var form = document.createElement("form");
     form.setAttribute("name", "login_forms");
     form.setAttribute("method", "post");
-
-    var input3 = document.createElement("input");
-    input3.setAttribute("type", "submit");
-    input3.setAttribute("value", "submit");
 
     form.appendChild(AddLbl("useremail"));
     form.appendChild(AddBr());
@@ -38,7 +50,7 @@ function BuildForm(){
     form.appendChild(AddInputText("password", "pass", "pass"));
     form.appendChild(AddBr());
     form.appendChild(AddBr());
-    form.appendChild(input3);
+    form.appendChild(AddInputSubmit("submit"));
 
     content.innerHTML = "";
     content.appendChild(form);
