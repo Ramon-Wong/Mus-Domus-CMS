@@ -6,10 +6,8 @@ function FormMenu(){
     this.form.setAttribute("method", "post"); 
 
     
-    this.GetForm = function(){
-        return this.form;
-    }
-
+    this.GetForm    = function(){  return this.form;}
+    this.CleanForm  = function(){this.form.innerHTML = "";}
 
     function AddBr(){ 
         return( document.createElement("br")); 
@@ -31,6 +29,8 @@ function FormMenu(){
 
     this.LoginForm = function(funct){
 
+        content.innerHTML = "";
+        this.CleanForm();
         //  text input
         this.form.appendChild( AddLbl("useremail"));
         this.form.appendChild( AddBr());
@@ -47,9 +47,10 @@ function FormMenu(){
         this.form.appendChild( AddBr());
         this.form.appendChild( AddAttribute( [["type", "button"], ["id", "id"], ["name", "submit"], ["value", "Submit"], ["onclick", funct]]));
 
-        content.innerHTML = "";
+        
         content.appendChild(this.form);
     }        
 
     this.GetForm = function(){return this.form;}
+    
 }
