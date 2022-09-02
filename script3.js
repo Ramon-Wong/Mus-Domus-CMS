@@ -5,11 +5,15 @@ function FormMenu(){
     this.form.setAttribute("name", "login_forms");
     this.form.setAttribute("method", "post"); 
 
+    
+    this.GetForm = function(){
+        return this.form;
+    }
+
 
     function AddBr(){ 
         return( document.createElement("br")); 
     }
-
 
     function AddLbl(name){ 
         var lbl    = document.createElement("label");
@@ -18,17 +22,14 @@ function FormMenu(){
         return lbl;
     }
 
-
     function AddAttribute( array){
         var input   = document.createElement("input");
 
         for(let x in array){    input.setAttribute(array[x][0], array[x][1]);    }
         return input;
-
     }
 
-
-    this.BuildForm = function(){
+    this.LoginForm = function(funct){
 
         //  text input
         this.form.appendChild( AddLbl("useremail"));
@@ -44,12 +45,11 @@ function FormMenu(){
         // submit button
         this.form.appendChild( AddBr());
         this.form.appendChild( AddBr());
-        this.form.appendChild( AddAttribute( [["type", "button"], ["id", "id"], ["name", "submit"], ["value", "Submit"], ["onclick", "ShowMsg()"]]));
+        this.form.appendChild( AddAttribute( [["type", "button"], ["id", "id"], ["name", "submit"], ["value", "Submit"], ["onclick", funct]]));
 
         content.innerHTML = "";
         content.appendChild(this.form);
     }        
-
 
     this.GetForm = function(){return this.form;}
 }
