@@ -3,9 +3,7 @@ var Functions   = [funct1, funct2, funct3, funct4, funct5];
 var content     = document.getElementById("content").getElementsByClassName("wrap")[0];
 fMenu           = new FormMenu();
 
-
 var key     = sessionStorage.getItem("key");
-
 
 
 function ShowStuff(){
@@ -21,7 +19,6 @@ function ShowStuff(){
     
     console.log(JSON.stringify(object));
 }
-
 
 
 function funct1(){      RequestPage("listener.php", JSON.parse('{"key": "' + key + '", "type": "page", "page": 1}'), content);}
