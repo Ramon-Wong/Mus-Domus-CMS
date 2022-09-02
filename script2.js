@@ -20,11 +20,6 @@ function RequestPage( path, string, element){
 }
 
 
-function ShowMsg(){
-    console.log("Hello World");
-}
-
-
 /*  Validate Email  */
 function ValidateEmail(input) {
 
