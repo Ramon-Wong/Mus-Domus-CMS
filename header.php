@@ -5,6 +5,12 @@
     <title>Page Layout</title>
     <link rel="stylesheet" href="style/style.css">
     <link rel="shortcut icon" href="#">
+
+    <script>
+        sessionStorage.setItem("url",       <?php echo "{$_SERVER['REQUEST_URI']}" ?>);
+        sessionStorage.setItem("key",       <?php echo "'".generateKey()."'" ?>);
+    </script>        
+
 </head>
   
 <body>

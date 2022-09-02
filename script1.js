@@ -13,10 +13,12 @@ function ShowStuff(){
     var object = {};
 
     object["key"] = key;
+    object["type"] = "login";
     formData.forEach(function(value, key){
         object[key] = value;
     });
     
+    RequestPage("listener.php", JSON.parse(JSON.stringify(object)), content);
     console.log(JSON.stringify(object));
 }
 

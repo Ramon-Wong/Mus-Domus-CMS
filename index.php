@@ -19,10 +19,7 @@
         <script src="script3.js"></script>
         <script src="script2.js"></script>
         <script src="script1.js"></script>
-        <script>
-            sessionStorage.setItem("url",       <?php echo "{$_SERVER['REQUEST_URI']}" ?>);
-            sessionStorage.setItem("key",       <?php echo "'".generateKey()."'" ?>);
-        </script>        
+    
 
     </footer>    
 </body>
