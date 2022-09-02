@@ -1,23 +1,73 @@
 
-// need to change RequestPage, adding virtual functions and parameters
 
 
 function RequestPage( path, string, element){
+
+    this._path      = path;
+    this._string    = string;
+    this._element   = element;
+
+    RequestPage.ShowPage    = function(){}
+    RequestPage.ShowLogin   = function(){}    
+    RequestPage.ShowLogout  = function(){}
+    RequestPage.ShowTest    = function(){}
+    RequestPage.ShowNav     = function(){}
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", path, true);
 
     xhr.setRequestHeader("Content-type", "application/json");
 
-    var obj = JSON.stringify(string);
-    xhr.send(obj);
+    var Obj = JSON.stringify(string);
+    xhr.send(Obj);
 
     xhr.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            element.innerHTML = this.responseText;
+            
+            var json = JSON.parse(this.responseText);
+             console.log(json.key); // got the key
+
+            switch(json.type){
+                case "page":
+                    RequestPage.prototype.ShowPage.call();
+                    break;
+
+                case "login":
+                    RequestPage.prototype.ShowLogin.call();
+                    break;    
+
+                case "logout":
+                    RequestPage.prototype.ShowLogout.call();
+                    break;
+
+                case "test":
+                    RequestPage.prototype.ShowTest.call();
+                    break;
+
+                case "nav":
+                    RequestPage.prototype.ShowNav.call();
+                    break;
+
+                default:
+                    console.log("not supported type");
+            }
         }
     }    
 }
+
+
+RequestPage.prototype.ShowPage    = function(){
+    console.log("Post Page stuff " + this._string.key);
+    
+    this._element.innerHTML = this._string.page;
+}
+
+
+RequestPage.prototype.ShowLogin   = function(){
+    console.log("ShowLogin stuff");
+
+    this._element.innerHTML = "Login stuff";    
+} 
 
 
 /*  Validate Email  */
