@@ -1,68 +1,55 @@
 
+function FormMenu(){
+    this.form = document.createElement("form");
 
-// I figure out a way, to send a form in an simple array to build the form.
-// maybe in a combination of a json string and array
-// also need to insert virtual functions? or just parameters?
+    this.form.setAttribute("name", "login_forms");
+    this.form.setAttribute("method", "post"); 
 
-
-
-function BuildForm(){
-    function AddBr(){
-        return( document.createElement("br"));
+    
+    this.GetForm = function(){
+        return this.form;
     }
 
-    function AddLbl(name){
+
+    function AddBr(){ 
+        return( document.createElement("br")); 
+    }
+
+    function AddLbl(name){ 
         var lbl    = document.createElement("label");
         lbl.setAttribute("for",name);
         lbl.innerHTML  = name;
         return lbl;
     }
 
-    function AddInputText(type, id, name){
+    function AddAttribute( array){
         var input   = document.createElement("input");
 
-        input.setAttribute("type", type);
-        input.setAttribute("id", id);
-        input.setAttribute("name", name);
-
+        for(let x in array){    input.setAttribute(array[x][0], array[x][1]);    }
         return input;
     }
 
-    function AddInputSubmit( name){
-        var input   = document.createElement("input");
+    this.LoginForm = function(funct){
 
-        input.setAttribute("type", "submit");
-        input.setAttribute("value", "submit");
+        //  text input
+        this.form.appendChild( AddLbl("useremail"));
+        this.form.appendChild( AddBr());
+        this.form.appendChild( AddAttribute([["type","text"],["id","email"],["name", "email"]]));
 
-        return input;
-    }
+        // text input (hidden password)
+        this.form.appendChild( AddBr());
+        this.form.appendChild( AddLbl("Password"));
+        this.form.appendChild( AddBr());
+        this.form.appendChild( AddAttribute([["type","password"],["id","pass"],["name", "pass"]]));
 
-    var form = document.createElement("form");
-    form.setAttribute("name", "login_forms");
-    form.setAttribute("method", "post");
+        // submit button
+        this.form.appendChild( AddBr());
+        this.form.appendChild( AddBr());
+        this.form.appendChild( AddAttribute( [["type", "button"], ["id", "id"], ["name", "submit"], ["value", "Submit"], ["onclick", funct]]));
 
-    form.appendChild(AddLbl("useremail"));
-    form.appendChild(AddBr());
-    form.appendChild(AddInputText("text", "email", "email"));
-    form.appendChild(AddBr());
-    form.appendChild(AddLbl("Password"));
-    form.appendChild(AddBr());
-    form.appendChild(AddInputText("password", "pass", "pass"));
-    form.appendChild(AddBr());
-    form.appendChild(AddBr());
-    form.appendChild(AddInputSubmit("submit"));
+        content.innerHTML = "";
+        content.appendChild(this.form);
+    }        
 
-    content.innerHTML = "";
-    content.appendChild(form);
-
-    form.addEventListener('submit', function(evt){
-        evt.preventDefault();
-
-        if( ValidateEmail(form.email) == true){
-            var email = form.email.value;
-            var pass  = form.pass.value;
-            var jsonstr = '{"key": "' + key + '", "page": "request", "email": "' + email + '", "pass": "' + pass + '"}';
-            RequestPage("listener.php", JSON.parse(jsonstr), content);
-        }
-    });    
+    this.GetForm = function(){return this.form;}
 }
