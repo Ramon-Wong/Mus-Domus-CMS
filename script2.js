@@ -56,14 +56,19 @@ function RequestPage( path, string, element){
 RequestPage.prototype.ShowPage    = function(){
     // console.log("Post Page stuff " + this._string.key);
     //dump contents of this.string element(Json) to console log(string)
-    console.log(this._string);
+    
+    console.log("page json: " + JSON.stringify(this._string));
 
     this._element.innerHTML = this._string.page;
 }
 
 
 RequestPage.prototype.ShowLogin   = function(){
-    console.log("ShowLogin stuff");
+    // note to self: 
+    // need to figure out on sending encrypted data to the server
+    // link https://stackoverflow.com/questions/24337317/encrypt-with-php-decrypt-with-javascript-cryptojs
+    
+    console.log("Login json: " + JSON.stringify(this._string));
 
     this._element.innerHTML = "Login stuff";    
 } 

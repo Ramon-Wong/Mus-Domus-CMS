@@ -13,18 +13,20 @@ switch($obj->type){
         // stuff to do with a page
         break;
     case "login":
-        // stuff to do with a login
+        // login
         break;
     case "logout":
-        // stuff to do with a logout
+        // logout
         break;    
 
     case "test":
         // stuff to do with a test
+        // need this to output the test results and other shit
         break;
 
     case "nav":
-        // stuff to do with a nav
+        // stuff to do with a nav or
+        // I probably would have a separate file for this named nav.php
         break;
     default:
 
