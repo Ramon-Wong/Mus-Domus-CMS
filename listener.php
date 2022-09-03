@@ -1,24 +1,24 @@
 <?php
-
+header('Content-Type: application/json; charset=utf-8');
 
 $requestPayload = file_get_contents("php://input");
 $obj            = json_decode($requestPayload);
-
+$str;
 
 switch($obj->type){
     case "page":
         // stuff to do with a page
+        $str = $obj;
         break;
     case "login":
         // login
-        // how the payload looks like {"key":"DHfRMcTXs5ES0difUH8cOOid","type":"login","email":"rcnwong78@gmail.com","pass":"12345abcd"}
-        //                            {"key":"8DPOoHHagYiMRyTEGBnGEbme","type":"login","email":"rcnwong78@gmail.com","pass":"12345"}
-        if( obj.email == "rcnwong78@gmail.com" && obj.pass == "1234abcd" ){
-
+        if($obj->username == "admin" && $obj->password == "admin"){
+            $str = '{"key":"'.$obj->key.'","type":"login","username":"'.$obj->username.'","password":"'.$obj->password.'","status":"succeed"}';
         } else {
-            // $str = '{"key":' + obj.key + ',"type":"login","message":"Invalid email or password"}';
-            // $str = '{"HAHAHAHA": "HAHAHAHHAHAHAHHAHAHA"}';
+            $obj->message = "Wrong username or password";
+            $str = $obj;
         }
+
 
         break;
     case "logout":
@@ -39,7 +39,5 @@ switch($obj->type){
         break;
 }
 
-
-echo json_encode($str);
-
+    echo json_encode($str);
 ?>

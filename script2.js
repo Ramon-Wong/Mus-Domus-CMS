@@ -23,8 +23,7 @@ function RequestPage( path, string, element){
         if(this.readyState == 4 && this.status == 200){
             
             var json = JSON.parse(this.responseText);
-            this._string = json;
-
+            
             switch(json.type){
                 case "page":
                     RequestPage.prototype.ShowPage.call();
