@@ -23,6 +23,7 @@ function RequestPage( path, string, element){
         if(this.readyState == 4 && this.status == 200){
             
             var json = JSON.parse(this.responseText);
+            this._string = json;
 
             switch(json.type){
                 case "page":
@@ -70,7 +71,7 @@ RequestPage.prototype.ShowLogin   = function(){
     
     console.log("Login json: " + JSON.stringify(this._string));
 
-    this._element.innerHTML = "Login stuff";    
+    this._element.innerHTML = this._string.message;    
 } 
 
 
