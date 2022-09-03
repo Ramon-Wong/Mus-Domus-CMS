@@ -23,7 +23,6 @@ function RequestPage( path, string, element){
         if(this.readyState == 4 && this.status == 200){
             
             var json = JSON.parse(this.responseText);
-             console.log(json.key); // got the key
 
             switch(json.type){
                 case "page":
@@ -55,8 +54,10 @@ function RequestPage( path, string, element){
 
 
 RequestPage.prototype.ShowPage    = function(){
-    console.log("Post Page stuff " + this._string.key);
-    
+    // console.log("Post Page stuff " + this._string.key);
+    //dump contents of this.string element(Json) to console log(string)
+    console.log(this._string);
+
     this._element.innerHTML = this._string.page;
 }
 

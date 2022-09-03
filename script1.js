@@ -7,7 +7,7 @@ var key     = sessionStorage.getItem("key");
 
 
 function ShowStuff(){
-    console.log("Hello World");
+    // console.log("Hello World");
 
     var formData = new FormData(fMenu.GetForm());
     var object = {};
@@ -19,7 +19,7 @@ function ShowStuff(){
     });
     
     RequestPage("listener.php", JSON.parse(JSON.stringify(object)), content);
-    console.log(JSON.stringify(object));
+    // console.log(JSON.stringify(object));
 }
 
 
