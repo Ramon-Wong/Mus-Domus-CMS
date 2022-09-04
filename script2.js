@@ -62,7 +62,7 @@ function RequestPage( path, string, element, callback){
 
     xhr.done = function(){
         callback();
-        console.log("done");
+        console.log("done: > ". this._string);
     }
 }
 
@@ -70,8 +70,6 @@ function RequestPage( path, string, element, callback){
 RequestPage.prototype.ShowPage    = function(){
     // console.log("Post Page stuff " + this._string.key);
     //dump contents of this.string element(Json) to console log(string)
-    
-    console.log("page json: " + JSON.stringify(this._string));
 
     this._element.innerHTML = this._string.page;
 }

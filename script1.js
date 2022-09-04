@@ -5,7 +5,6 @@ fMenu           = new FormMenu();
 
 var key     = sessionStorage.getItem("key");
 
-
 function ShowStuff(){
     // console.log("Hello World");
 
