@@ -23,6 +23,8 @@ function RequestPage( path, string, element){
         if(this.readyState == 4 && this.status == 200){
             
             var json = JSON.parse(this.responseText);
+            this._string = json;
+            console.log("json: " + JSON.stringify(this._string));
             
             switch(json.type){
                 case "page":
@@ -30,7 +32,7 @@ function RequestPage( path, string, element){
                     break;
 
                 case "login":
-                    RequestPage.prototype.ShowLogin.call();
+                    RequestPage.prototype.ShowLogin.call(); 
                     break;    
 
                 case "logout":
@@ -49,7 +51,11 @@ function RequestPage( path, string, element){
                     console.log("not supported type");
             }
         }
-    }    
+    }
+
+    xhr.done = function(){
+        console.log("done");
+    }
 }
 
 
@@ -68,9 +74,9 @@ RequestPage.prototype.ShowLogin   = function(){
     // need to figure out on sending encrypted data to the server
     // link https://stackoverflow.com/questions/24337317/encrypt-with-php-decrypt-with-javascript-cryptojs
     
-    console.log("Login json: " + JSON.stringify(this._string));
-
-    this._element.innerHTML = this._string.message;    
+    // this._element.innerHTML = this._string.message;
+    
+    this._element.innerHTML = JSON.stringify( this._string);
 } 
 
 
