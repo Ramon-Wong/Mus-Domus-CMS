@@ -1,5 +1,12 @@
 
-function RequestPage( path, string, element){
+
+
+// Hey CoPilot.
+// Gimme the best suggestion on where I can insert a Callback in the RequestPage function.
+// for now the Callback can be an empty function, I'll change things when I get the test that I wanted
+// Go go go Copilot.
+
+function RequestPage( path, string, element, callback){
 
     this._path      = path;
     this._string    = string;
@@ -54,6 +61,7 @@ function RequestPage( path, string, element){
     }
 
     xhr.done = function(){
+        callback();
         console.log("done");
     }
 }
