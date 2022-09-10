@@ -1,10 +1,20 @@
 
 
 
-// Hey CoPilot.
-// Gimme the best suggestion on where I can insert a Callback in the RequestPage function.
-// for now the Callback can be an empty function, I'll change things when I get the test that I wanted
-// Go go go Copilot.
+async function getText(url) {
+    try{
+        let response    = await fetch( url, { method:'GET', headers:{ 'Accept':'application/json','Content-Type':'application/json'}});
+        let data        = await response.json();
+    } catch(err) {    
+        console.log(err);
+    }    
+
+    console.log(data);
+    element.innerHTML = JSON.stringify(data);
+}
+
+
+
 
 function RequestPage( path, string, element, callback){
 
