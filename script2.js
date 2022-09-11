@@ -1,17 +1,16 @@
 
 
+var ReadFetch = (url) => {
+    
+    return fetch( url, { method:'GET', headers:{ 'Accept':'application/json','Content-Type':'application/json'}})
+            .then( response => response.json())
+            .then(data =>{ 
+                console.log("if you read this, then the fetch function is done");
+                console.log(data);          
+                element.innerHTML = JSON.stringify(data);
+    })
 
-async function getText(url, element) {
-    try{
-        let response    = await fetch( url, { method:'GET', headers:{ 'Accept':'application/json','Content-Type':'application/json'}});
-        // fetch(url, { method:'POST', headers:{ 'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify({message:'Hello World'})})
-        let data        = await response.json();
-    } catch(err) {    
-        console.log(err);
-    }    
-
-    console.log(data);
-    element.innerHTML = JSON.stringify(data);
+    .catch(err => console.log(err));
 }
 
 
