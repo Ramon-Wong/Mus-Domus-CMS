@@ -1,9 +1,10 @@
 
 
 
-async function getText(url) {
+async function getText(url, element) {
     try{
         let response    = await fetch( url, { method:'GET', headers:{ 'Accept':'application/json','Content-Type':'application/json'}});
+        // fetch(url, { method:'POST', headers:{ 'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify({message:'Hello World'})})
         let data        = await response.json();
     } catch(err) {    
         console.log(err);
@@ -15,6 +16,9 @@ async function getText(url) {
 
 
 
+// CoPilot: example on how to use Fetch? posting a message to the server
+//  fetch(url, { method:'POST', headers:{ 'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify({message:'Hello World'})})
+
 
 function RequestPage( path, string, element, callback){
 
@@ -23,57 +27,22 @@ function RequestPage( path, string, element, callback){
     this._element   = element;
 
     RequestPage.ShowPage    = function(){}
-    RequestPage.ShowLogin   = function(){}    
+    RequestPage.ShowLogin   = function(){}
     RequestPage.ShowLogout  = function(){}
     RequestPage.ShowTest    = function(){}
     RequestPage.ShowNav     = function(){}
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", path, true);
-
-    xhr.setRequestHeader("Content-type", "application/json");
-
-    var Obj = JSON.stringify(string);
-    xhr.send(Obj);
-
-    xhr.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            
-            var json = JSON.parse(this.responseText);
-            this._string = json;
-            console.log("json: " + JSON.stringify(this._string));
-            
-            switch(json.type){
-                case "page":
-                    RequestPage.prototype.ShowPage.call();
-                    break;
-
-                case "login":
-                    RequestPage.prototype.ShowLogin.call(); 
-                    break;    
-
-                case "logout":
-                    RequestPage.prototype.ShowLogout.call();
-                    break;
-
-                case "test":
-                    RequestPage.prototype.ShowTest.call();
-                    break;
-
-                case "nav":
-                    RequestPage.prototype.ShowNav.call();
-                    break;
-
-                default:
-                    console.log("not supported type");
-            }
-        }
+    try{
+        let response    = fetch( this._path, 
+            { method:'POST', headers:{ 'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify(this._string)});
+        let data        = await.response.json();
+        console.log(data);
+        this._element.innerHTML = JSON.stringify(data);
+    }catch(err){
+        console.log(err);
     }
 
-    xhr.done = function(){
-        callback();
-        console.log("done: > ". this._string);
-    }
+
 }
 
 
