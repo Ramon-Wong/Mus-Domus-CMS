@@ -1,12 +1,13 @@
 
 
+
 var ReadFetch = (url, message, element) => {
     
-    return fetch( url, { method:'POST', headers:{ 'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify(message)})
+    return fetch( url, { method:'POST', headers:{'Accept':'application/json','Content-type':'application/json'}, body:JSON.stringify(message)})
             .then( response => response.json())
             .then(data =>{  console.log("if you read this, then the fetch function is done");
-                            console.log(data);          
-                            // element.innerHTML = JSON.stringify(data);
+                            // console.log(data);          
+                            element.innerHTML = JSON.stringify(data);
 
     }).catch(err => console.log(err));
 }
@@ -15,7 +16,7 @@ var ReadFetch = (url, message, element) => {
 
 // CoPilot: example on how to use Fetch? posting a message to the server
 //  fetch(url, { method:'POST', headers:{ 'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify({message:'Hello World'})})
-
+//    xhr.setRequestHeader("Content-type", "application/json");
 
 function RequestPage( path, string, element){
 

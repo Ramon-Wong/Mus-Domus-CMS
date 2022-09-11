@@ -38,5 +38,5 @@ $obj            = json_decode($requestPayload);
 //         break;
 // }
 
-    echo json_encode($obj);
+    echo $obj;
 ?>
