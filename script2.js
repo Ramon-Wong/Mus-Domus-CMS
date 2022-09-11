@@ -1,16 +1,14 @@
 
 
-var ReadFetch = (url) => {
+var ReadFetch = (url, message, element) => {
     
-    return fetch( url, { method:'GET', headers:{ 'Accept':'application/json','Content-Type':'application/json'}})
+    return fetch( url, { method:'POST', headers:{ 'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify(message)})
             .then( response => response.json())
-            .then(data =>{ 
-                console.log("if you read this, then the fetch function is done");
-                console.log(data);          
-                element.innerHTML = JSON.stringify(data);
-    })
+            .then(data =>{  console.log("if you read this, then the fetch function is done");
+                            console.log(data);          
+                            // element.innerHTML = JSON.stringify(data);
 
-    .catch(err => console.log(err));
+    }).catch(err => console.log(err));
 }
 
 
@@ -19,7 +17,7 @@ var ReadFetch = (url) => {
 //  fetch(url, { method:'POST', headers:{ 'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify({message:'Hello World'})})
 
 
-function RequestPage( path, string, element, callback){
+function RequestPage( path, string, element){
 
     this._path      = path;
     this._string    = string;
@@ -31,17 +29,7 @@ function RequestPage( path, string, element, callback){
     RequestPage.ShowTest    = function(){}
     RequestPage.ShowNav     = function(){}
 
-    try{
-        let response    = fetch( this._path, 
-            { method:'POST', headers:{ 'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify(this._string)});
-        let data        = await.response.json();
-        console.log(data);
-        this._element.innerHTML = JSON.stringify(data);
-    }catch(err){
-        console.log(err);
-    }
-
-
+    ReadFetch( this._path, this._string, this._element);
 }
 
 
