@@ -6,7 +6,7 @@ fMenu           = new FormMenu();
 var key     = sessionStorage.getItem("key");
 
 function ShowStuff(){
-    // console.log("Hello World");
+    console.log("Hello World");
 
     var formData = new FormData(fMenu.GetForm());
     var object = {};
@@ -17,17 +17,17 @@ function ShowStuff(){
         object[key] = value;
     });
     
-    RequestPage("listener.php", JSON.parse(JSON.stringify(object)), content);
+    RequestPage("listener.php", object, content);
     // console.log(JSON.stringify(object));
 }
 
 
-function funct1(){      RequestPage("listener.php", '{"message":"message"}', content);}
-function funct2(){      RequestPage("listener.php", '{"message":"message"}', content);}
-function funct3(){      RequestPage("listener.php", '{"message":"message"}', content);}
-function funct4(){      RequestPage("listener.php", '{"message":"message"}', content);}
-
+function funct1(){      RequestPage("listener.php", '{"key": "' + key + '", "type": "page", "page": 1}', content);}
+function funct2(){      RequestPage("listener.php", '{"key": "' + key + '", "type": "page", "page": 2}', content);}
+function funct3(){      RequestPage("listener.php", '{"key": "' + key + '", "type": "page", "page": 3}', content);}
+function funct4(){      RequestPage("listener.php", '{"key": "' + key + '", "type": "page", "page": 4}', content);}
 function funct5(){      fMenu.LoginForm("ShowStuff()");} 
+
     
 
 for(let x in Pages){

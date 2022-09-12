@@ -6,7 +6,7 @@ var ReadFetch = (url, message, element) => {
     return fetch( url, { method:'POST', headers:{'Accept':'application/json','Content-type':'application/json'}, body:JSON.stringify(message)})
             .then( response => response.json())
             .then(data =>{  console.log("if you read this, then the fetch function is done");
-                            // console.log(data);          
+                            console.log(data);          
                             element.innerHTML = JSON.stringify(data);
 
     }).catch(err => console.log(err));
