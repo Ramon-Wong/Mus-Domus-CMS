@@ -14,7 +14,7 @@
     <footer>    
 
         <div class="wrap">    
-            Footer Section
+            Footer Section!!
         </div>   
         <script src="script3.js"></script>
         <script src="script2.js"></script>
