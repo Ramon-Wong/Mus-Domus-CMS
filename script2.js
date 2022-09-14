@@ -6,7 +6,7 @@ var Payload = ( type, value) => {
     this.obj = {};
     this.obj["key"] = key;
     this.obj["type"] = type;
-    this.obj["value"] = value;
+    this.obj["page"] = value;
 
     return this.obj;
 }

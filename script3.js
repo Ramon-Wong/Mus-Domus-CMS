@@ -27,14 +27,17 @@ function FormMenu(){
         return input;
     }
 
+
     this.LoginForm = function(funct){
 
         content.innerHTML = "";
         this.CleanForm();
         //  text input
-        this.form.appendChild( AddLbl("useremail"));
+        this.form.appendChild( AddBr());
+        this.form.appendChild( AddLbl("Useremail"));
         this.form.appendChild( AddBr());
         this.form.appendChild( AddAttribute([["type","text"],["id","email"],["name", "email"]]));
+
 
         // text input (hidden password)
         this.form.appendChild( AddBr());
@@ -52,5 +55,10 @@ function FormMenu(){
     }        
 
     this.GetForm = function(){return this.form;}
-    
 }
+
+
+
+
+
+

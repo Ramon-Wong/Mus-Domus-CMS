@@ -1,5 +1,6 @@
 <?php
 
+
 $requestPayload = file_get_contents("php://input");
 $obj            = json_decode($requestPayload);
 
@@ -7,13 +8,14 @@ $str            = '{"message":"Hello World"}';
 $return;
 
 
+
     switch($obj->type){
         case "page":
-            $str = '{"message":"page"}';
+            $str = '{"message":"page'.$obj->page.'", "key":"'.$obj->key.'"}';
         break;
 
         case "test":
-            $str = '{"message":"test"}';
+            $str = $formlist;
         break;
 
         case "login":
