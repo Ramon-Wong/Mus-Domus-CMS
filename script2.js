@@ -18,7 +18,7 @@ var ReadFetch = (url, message, element) => {
             .then( response => response.json())
             .then(data =>{  console.log(data);          
                             element.innerHTML = JSON.stringify(data);
-
+                        
     }).catch(err => console.log(err));
 }
 
