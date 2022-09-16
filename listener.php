@@ -13,6 +13,7 @@ $return;
 $consoleMSG     = "Console Messages";
 $file;
 
+$gKey           = "";
 
 
 // unlink($filepath);
@@ -27,17 +28,28 @@ $file;
         fclose($file);
     }
 
-    $file = fopen($filepath, "r");
-    $data = fread($file, filesize($filepath));
-    $jData = json_decode($data, true);
+    $file           = fopen($filepath, "r");
+    $data           = fread($file, filesize($filepath));
+    $jData          = json_decode($data, true);
     fclose($file);
 
-    $testMSG     = "Data: ".$jData['email']." / ".$jData['password'];
+    $testMSG        = "Data: ".$jData['email']." / ".$jData['password'];
     
 
     switch($obj->type){
         case "page":
-            $str = '{"message":"page'.$obj->page.'", "key":"'.$obj->key.'", "console":"'.$consoleMSG.'"}';
+
+            if($gKey == $obj->key){
+                $consoleMSG     = "Key is already set";
+                $str = '{"message":"page'.$obj->page.'", "key":"'.$obj->key.'", "console":"'.$consoleMSG.'"}';
+                
+            }else{
+                $consoleMSG     = "Key is not set";
+                $str = '{"message":"page'.$obj->page.'", "key":"'.$obj->key.'", "console":"'.$consoleMSG.'"}';
+            }
+
+            $return = $str;
+
         break;
 
         case "test":
@@ -47,6 +59,9 @@ $file;
         case "login":
             if( $obj->email == $jData['email'] AND $obj->password == $jData['password'] ){
                 $str = '{"message":"Login Successfull", "key":"'.$obj->key.'", "console":"'.$consoleMSG.'"}';
+
+                $gKey = $obj->key;
+                
             }else{
 
                 $str =  $obj->email."/".$jData['email']." <> ".$obj->password."/".$jData['password'];
