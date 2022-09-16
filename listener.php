@@ -6,44 +6,21 @@ $requestPayload = file_get_contents("php://input");
 $obj            = json_decode($requestPayload);
 
 $str            = '{"message":"Hello World"}';
-$_data          = '123456789abcdefg';
 $json_data      = '{"email":"admin@domain.com", "password":"admin"}';
-$return;
-
 $filepath       = "data/data.json";
+
+$return;
 $consoleMSG     = "Console Messages";
 $file;
 
 
 
-    // unlink($filepath);
+// unlink($filepath);
 
-
-    // if(!file_exists($filepath)){
-    //     touch($filepath);
-    //     chmod($filepath, 0600);
-
-    //     $file = fopen($file, "w+");
-    //     if($file){
-    //         fwrite($file, $json_data);
-    //         fclose($file);
-    //         $consoleMSG     = "Success creating and writing data to file";
-    //     }else{
-    //         $consoleMSG     = "Failed creating and writing data to file";        
-    //     }
-    // }
-
-    // $file = fopen($filepath, "r");
-    // if($file){
-    //     $json = fread($file, filesize($filepath));
-    //     $jsondata = json_decode($json, true);
-    //     fclose($file);
-    //     $consoleMSG     = "Success reading, Data: ". var_dump($jsondata);
-    // }
 
     if(!file_exists($filepath)){
         touch($filepath);
-        chmod($filepath, 0777);
+        chmod($filepath, 0600);
         $file = fopen($filepath, "w+");
         fwrite($file, $json_data);
 
@@ -55,12 +32,8 @@ $file;
     $jData = json_decode($data, true);
     fclose($file);
 
-    $consoleMSG     = "Data: ".$jData['email']."/".$jData['password']."/";
-
-
-
-    // $consoleMSG     = "Data: ".$obj->email."::".$obj->password;
-
+    $testMSG     = "Data: ".$jData['email']." / ".$jData['password'];
+    
 
     switch($obj->type){
         case "page":
@@ -68,11 +41,22 @@ $file;
         break;
 
         case "test":
-            $str = '{"usr":"'.$jsondata->email.'", "pwd":"'.$jsondata->password.'"}';
+            $str = '{"usr":"'.$testMSG.'"}';
         break;
 
         case "login":
-            $str = '{"message":"login"}';
+            if( $obj->email == $jData['email'] AND $obj->password == $jData['password'] ){
+                $str = '{"message":"Login Successfull", "key":"'.$obj->key.'", "console":"'.$consoleMSG.'"}';
+            }else{
+
+                $str =  $obj->email."/".$jData['email']." <> ".$obj->password."/".$jData['password'];
+            }
+            // $obj->key;
+            // $obj->email;
+            // $obj->password;
+
+
+            
         break;
 
         default:

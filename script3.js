@@ -43,7 +43,7 @@ function FormMenu(){
         this.form.appendChild( AddBr());
         this.form.appendChild( AddLbl("Password"));
         this.form.appendChild( AddBr());
-        this.form.appendChild( AddAttribute([["type","password"],["id","pass"],["name", "pass"]]));
+        this.form.appendChild( AddAttribute([["type","password"],["id","password"],["name", "password"]]));
 
         // submit button
         this.form.appendChild( AddBr());
