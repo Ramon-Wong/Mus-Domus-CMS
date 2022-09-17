@@ -1,37 +1,24 @@
 <?php
 
-#include "FileHandling.php";
-
 $requestPayload = file_get_contents("php://input");
 $obj            = json_decode($requestPayload);
 
 $str            = '{"message":"Hello World"}';
-$json_data      = '{"email":"admin@domain.com", "password":"admin"}';
-$filepath       = "data/data.json";
 
 $return;
 $consoleMSG     = "Console Messages";
 $file;
 
-$gKey           = "";
+//delete old config file
+$filepath       = "data/data.json";
 
 
-// unlink($filepath);
-
-
-    if(!file_exists($filepath)){
-        touch($filepath);
-        chmod($filepath, 0600);
-        $file = fopen($filepath, "w+");
-        fwrite($file, $json_data);
-
-        fclose($file);
-    }
 
     $file           = fopen($filepath, "r");
     $data           = fread($file, filesize($filepath));
     $jData          = json_decode($data, true);
     fclose($file);
+
 
     $testMSG        = "Data: ".$jData['email']." / ".$jData['password'];
     
@@ -39,7 +26,7 @@ $gKey           = "";
     switch($obj->type){
         case "page":
 
-            if($gKey == $obj->key){
+            if($jData[key] == $obj->key){
                 $consoleMSG     = "Key is already set";
                 $str = '{"message":"page'.$obj->page.'", "key":"'.$obj->key.'", "console":"'.$consoleMSG.'"}';
                 
@@ -52,16 +39,19 @@ $gKey           = "";
 
         break;
 
+
         case "test":
-            $str = '{"usr":"'.$testMSG.'"}';
+            $str = var_dump($jData);
         break;
 
         case "login":
             if( $obj->email == $jData['email'] AND $obj->password == $jData['password'] ){
                 $str = '{"message":"Login Successfull", "key":"'.$obj->key.'", "console":"'.$consoleMSG.'"}';
 
-                $gKey = $obj->key;
-                
+                $jData['key'] = $obj->key;
+                // open file for update
+                file_put_contents( $filepath, json_encode($jData));
+
             }else{
 
                 $str =  $obj->email."/".$jData['email']." <> ".$obj->password."/".$jData['password'];
