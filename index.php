@@ -2,7 +2,6 @@
     include 'functions.php';
     include 'header.php'; 
 
-
     $filepath       = "data/data.json";    
     $jsondata       = array("email"=> "admin@domain.com", "password"=> "admin", "key"=> "1234567890");
 
@@ -19,6 +18,15 @@
 
         fclose($file);
     }
+
+    $file           = fopen($filepath, "r");
+    $data           = fread($file, filesize($filepath));
+    $jData          = json_decode($data, true);
+    fclose($file);
+
+    $jData['key'] = $jsondata['key'];
+    // open file for update
+    file_put_contents( $filepath, json_encode($jData));
 
 
     // example from php array to json object

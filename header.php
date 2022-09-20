@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <script>
 
-
         sessionStorage.setItem("url",       <?php echo "{$_SERVER['REQUEST_URI']}" ?>);
         sessionStorage.setItem("key",       <?php echo '"'.generateKey().'"' ?>);
         

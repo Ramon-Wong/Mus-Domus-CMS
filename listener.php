@@ -39,9 +39,8 @@ $filepath       = "data/data.json";
 
         break;
 
-
         case "test":
-            $str = var_dump($jData);
+            $str = json_encode( $jData);
         break;
 
         case "login":
@@ -54,13 +53,26 @@ $filepath       = "data/data.json";
 
             }else{
 
-                $str =  $obj->email."/".$jData['email']." <> ".$obj->password."/".$jData['password'];
+                $str =  '{"message":"Login Failed", "key":"'.$obj->key.'", "console":"'.$consoleMSG.'"}';
             }
             // $obj->key;
             // $obj->email;
             // $obj->password;
             
         break;
+
+        case "Authentication":
+
+            $msg;
+
+            if($jData[key] == $obj->key){
+                $msg = array("login" => "true");
+            }else{
+                $msg = array("login" => "false");
+            }
+
+            $str = json_encode($msg);
+        break;    
 
         default:
             $str = '{"message":"default"}';
