@@ -5,9 +5,9 @@ fMenu           = new FormMenu();
 
 var key     = sessionStorage.getItem("key");
 
-function ShowStuff(){
-    console.log("Hello World");
 
+
+function ShowStuff(){
     var formData = new FormData(fMenu.GetForm());
     var object = {};
 
@@ -15,22 +15,37 @@ function ShowStuff(){
     object["type"] = "login";
     formData.forEach(function(value, key){
         object[key] = value;
-    });
-    
-    RequestPage("listener.php", object, content);
+    });    
+
+    RequestPage("listener.php", object, (data) => { content.innerHTML = ''; console.log(data);});
     // console.log(JSON.stringify(object));
 }
 
 
+function SetLogin(){
 
-function funct1(){      RequestPage("listener.php", Payload("page", 1), content);}
-function funct2(){      RequestPage("listener.php", Payload("page", 2), content);}
-function funct3(){      RequestPage("listener.php", Payload("test", 3), content);}
-function funct4(){      RequestPage("listener.php", Payload("page", 4), content);}
-function funct5(){      fMenu.LoginForm("ShowStuff()");} 
+    CheckAuthentication((data)=>{ 
+
+        console.log(data);
+        
+        if(data["login"] == "true"){
+            content.innerHTML =  "No need, you're already logged in";
+        }else{
+            fMenu.LoginForm("ShowStuff()");
+        }        
+    });
+
+}
+
+
+
+function funct1(){  RequestPage("listener.php", Payload("page", 1), (data) => { content.innerHTML = ''; console.log(data);});}
+function funct2(){  RequestPage("listener.php", Payload("page", 2), (data) => { content.innerHTML = ''; console.log(data);});}
+function funct3(){  RequestPage("listener.php", Payload("page", 3), (data) => { content.innerHTML = ''; console.log(data);});}
+function funct4(){  RequestPage("listener.php", Payload("page", 4), (data) => { content.innerHTML = ''; console.log(data);});}
+function funct5(){  SetLogin();}
 
     
-
 for(let x in Pages){
     var Element = document.getElementById(Pages[x]);
     Element.addEventListener("click", Functions[x]);

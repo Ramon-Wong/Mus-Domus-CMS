@@ -12,51 +12,26 @@ var Payload = ( type, value) => {
 }
 
 
-var ReadFetch = (url, message, element) => {
-    
+var  ReadFetch = (url, message, callback) => { 
+
     return fetch( url, { method:'POST', headers:{'Accept':'application/json','Content-type':'application/json'}, body:JSON.stringify(message)})
             .then( response => response.json())
-            .then(data =>{  console.log(data);          
-                            element.innerHTML = JSON.stringify(data);
-                        
-    }).catch(err => console.log(err));
+            .then( data => 
+                { callback(data); }
+            ).catch(err => console.log(err));
 }
 
 
-
-function RequestPage( path, string, element){
-
-    this._path      = path;
-    this._string    = string;
-    this._element   = element;
-
-    RequestPage.ShowPage    = function(){}
-    RequestPage.ShowLogin   = function(){}
-    RequestPage.ShowLogout  = function(){}
-    RequestPage.ShowTest    = function(){}
-    RequestPage.ShowNav     = function(){}
-
-    ReadFetch( this._path, this._string, this._element);
+function RequestPage( path, string, callback){
+    ReadFetch( path, string, (data) => {callback(data);});
 }
 
 
-RequestPage.prototype.ShowPage    = function(){
-    // console.log("Post Page stuff " + this._string.key);
-    //dump contents of this.string element(Json) to console log(string)
-
-    this._element.innerHTML = this._string.page;
+function CheckAuthentication( callback){
+    ReadFetch("listener.php", Payload("Authentication", 0), callback);
 }
 
 
-RequestPage.prototype.ShowLogin   = function(){
-    // note to self: 
-    // need to figure out on sending encrypted data to the server
-    // link https://stackoverflow.com/questions/24337317/encrypt-with-php-decrypt-with-javascript-cryptojs
-    
-    // this._element.innerHTML = this._string.message;
-    
-    this._element.innerHTML = JSON.stringify( this._string);
-} 
 
 
 /*  Validate Email  */
