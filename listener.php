@@ -18,7 +18,7 @@ $filepath       = "data/data.json";
     $jData          = json_decode($data, true);
     fclose($file);
 
-    unlink($filepath);
+    // unlink($filepath);
 
     switch($obj->type){
         case "page":
