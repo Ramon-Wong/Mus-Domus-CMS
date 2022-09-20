@@ -7,9 +7,6 @@ var key     = sessionStorage.getItem("key");
 
 
 
-
-
-
 function ShowStuff(){
     var formData = new FormData(fMenu.GetForm());
     var object = {};
@@ -19,8 +16,7 @@ function ShowStuff(){
     formData.forEach(function(value, key){
         object[key] = value;
     });    
-                                        //   need to create a callback function to handle the response inside the RequestPage function
-                                        //         v 
+
     RequestPage("listener.php", object, (data) => { content.innerHTML = ''; console.log(data);});
     // console.log(JSON.stringify(object));
 }

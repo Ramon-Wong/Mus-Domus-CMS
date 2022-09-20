@@ -28,12 +28,6 @@
     // open file for update
     file_put_contents( $filepath, json_encode($jData));
 
-
-    // example from php array to json object
-    // $age = array("Peter"=>35, "Ben"=>37, "Joe"=>43);
-    // echo json_encode($age);
-
-
 ?>
 
     <main id= "content">
@@ -53,7 +47,6 @@
         <script src="script2.js"></script>
         <script src="script1.js"></script>
     
-
     </footer>    
 </body>
 

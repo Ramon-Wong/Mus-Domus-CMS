@@ -13,14 +13,11 @@ $file;
 $filepath       = "data/data.json";
 
 
-
     $file           = fopen($filepath, "r");
     $data           = fread($file, filesize($filepath));
     $jData          = json_decode($data, true);
     fclose($file);
 
-
-    $testMSG        = "Data: ".$jData['email']." / ".$jData['password'];
     
 
     switch($obj->type){
