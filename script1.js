@@ -17,7 +17,17 @@ function ShowStuff(){
         object[key] = value;
     });    
 
-    RequestPage("listener.php", object, (data) => { content.innerHTML = ''; console.log(data);});
+    function callback(data){
+        console.log( data["message"]);
+
+        if( data["message"] == "Login Successfull"){
+            content.innerHTML = "You're logged in";
+        }else{
+
+        }
+    }
+
+    RequestPage("listener.php", object, (data) => { callback(data);});
     // console.log(JSON.stringify(object));
 }
 
