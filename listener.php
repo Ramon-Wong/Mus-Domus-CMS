@@ -10,11 +10,11 @@ $consoleMSG     = "Console Messages";
 $file;
 
 //delete old config file
-$filepath       = "data/data.json";
+$filepath       = array("data/data.json", "data/pages.json");
 
 
-    $file           = fopen($filepath, "r");
-    $data           = fread($file, filesize($filepath));
+    $file           = fopen($filepath[0], "r");
+    $data           = fread($file, filesize($filepath[0]));
     $jData          = json_decode($data, true);
     fclose($file);
 
@@ -46,7 +46,7 @@ $filepath       = "data/data.json";
 
                 $jData['key'] = $obj->key;
                 // open file for update
-                file_put_contents( $filepath, json_encode($jData));
+                file_put_contents( $filepath[0], json_encode($jData));
 
             }else{
 
