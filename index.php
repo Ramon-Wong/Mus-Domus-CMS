@@ -29,7 +29,6 @@
     file_put_contents( $filepath, json_encode($jData));
 
 ?>
-
     <main id= "content">
 
         <div class="wrap">
