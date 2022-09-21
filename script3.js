@@ -28,22 +28,24 @@ function FormMenu(){
     }
 
 
+    function AddForm( form, name, array){
+
+        form.appendChild( AddBr());
+        form.appendChild( AddLbl(name));
+        form.appendChild( AddBr());
+        form.appendChild( AddAttribute(array));
+        
+    }
+
+
+
     this.LoginForm = function(funct){
 
         content.innerHTML = "";
         this.CleanForm();
         //  text input
-        this.form.appendChild( AddBr());
-        this.form.appendChild( AddLbl("Useremail"));
-        this.form.appendChild( AddBr());
-        this.form.appendChild( AddAttribute([["type","text"],["id","email"],["name", "email"]]));
-
-
-        // text input (hidden password)
-        this.form.appendChild( AddBr());
-        this.form.appendChild( AddLbl("Password"));
-        this.form.appendChild( AddBr());
-        this.form.appendChild( AddAttribute([["type","password"],["id","password"],["name", "password"]]));
+        AddForm( this.form, "User Email", [["type", "text"], ["name", "email"], ["id", "email"]]);
+        AddForm( this.form, "Password", [["type","password"],["id","password"],["name", "password"]]);
 
         // submit button
         this.form.appendChild( AddBr());
