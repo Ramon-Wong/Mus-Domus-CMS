@@ -9,7 +9,7 @@ var key         = sessionStorage.getItem("key");
 
 
 function ShowStuff(){
-    var formData = new FormData(fMenu.GetForm());
+    var formData = new FormData(tMenu.GetForm());                   // <= ???
     var object = {};
 
     object["key"] = key;
@@ -42,10 +42,9 @@ function SetLogin(){
         if(data["login"] == "true"){
             content.innerHTML =  "No need, you're already logged in";
         }else{
+            // processed forms and then send to heaven
+            tMenu.LoginForm("ShowStuff()");
             // fMenu.LoginForm("ShowStuff()");
-
-            tMenu.ConfigForm(() => {});
-
         }        
     });
 }

@@ -45,7 +45,6 @@ function _FormMenu(_array){
 
         wrap.appendChild( AddLbl(name)).setAttribute("style", "display: block;");
         wrap.appendChild( AddAttribute("textarea", array)).setAttribute("style", "display: inline-block; width: 300px;");
-        // wrap.appendChild( AddTextArea(array)).setAttribute("style", "display: inline-block; width: 300px;");
 
         form.appendChild(wrap);
     }
@@ -79,6 +78,18 @@ function _FormMenu(_array){
     }
 
 
+    this.LoginForm = function(funct){
 
+        content.innerHTML = "";
+        this.CleanForm();
+        //  text input
+        AddHorzForm( this.form, "User Email", [["type", "text"], ["name", "email"], ["id", "email"]]);
+        AddHorzForm( this.form, "Password", [["type","password"],["id","password"],["name", "password"]]);
+        AddBr(this.form);
+        // submit button
+        AddHorzForm( this.form, null, [["type", "button"], ["id", "id"], ["name", "submit"], ["value", "Submit"],["class", "wrap"], ["onclick", funct]]);
+
+        content.appendChild(this.form);        
+    }
 
 }
