@@ -1,19 +1,12 @@
 
-function _FormMenu(){
+function _FormMenu(_array){
 
     this.form = document.createElement("form");
+    for(let x in _array){ this.form.setAttribute( _array[x][0], _array[x][1]);    }
 
-    this.form.setAttribute("name", "login_forms");
-    this.form.setAttribute("method", "post"); 
-    this.form.setAttribute("style", " border: 1px solid black; padding: 10px; width: 305px;");
-
-    this.GetForm    = function(){  return this.form;}
-    this.CleanForm  = function(){this.form.innerHTML = "";}
-    
-
-    var AddBr = (form) => {
-        form.appendChild( document.createElement("br"));
-    }
+    this.GetForm    = () => {  return this.form;}
+    this.CleanForm  = () => { this.form.innerHTML = "";}
+    var AddBr       = (form) => { form.appendChild( document.createElement("br")); }
 
     var AddLbl = (name) => { 
         var lbl    = document.createElement("label");
@@ -33,20 +26,11 @@ function _FormMenu(){
     }
 
 
-    var AddTextArea = (array) => {
-        var input   = document.createElement("textarea");
-
-        for(let x in array){    input.setAttribute(array[x][0], array[x][1]);    }
-        return input;
-    }
-
-
     function AddHorzForm( form, name, array){
 
         wrap = document.createElement("wrap");
         wrap.setAttribute("class", "lblwrap");
 
-        // wrap.appendChild( AddBr());        
         if( name != null){  wrap.appendChild( AddLbl(name)).setAttribute("style", "display: inline-block;");    }
         wrap.appendChild( AddAttribute("input", array)).setAttribute("style", "display: inline-block;");
 
@@ -59,9 +43,9 @@ function _FormMenu(){
         wrap = document.createElement("wrap");
         wrap.setAttribute("class", "lblwrap");
 
-        // wrap.appendChild( AddBr());        
         wrap.appendChild( AddLbl(name)).setAttribute("style", "display: block;");
-        wrap.appendChild( AddTextArea(array)).setAttribute("style", "display: inline-block; width: 300px;");
+        wrap.appendChild( AddAttribute("textarea", array)).setAttribute("style", "display: inline-block; width: 300px;");
+        // wrap.appendChild( AddTextArea(array)).setAttribute("style", "display: inline-block; width: 300px;");
 
         form.appendChild(wrap);
     }
@@ -85,7 +69,9 @@ function _FormMenu(){
         AddHorzArea( this.form, "Footer", [["type", "text"], ["name", "area"], ["id", "area"]]);
 
         AddBr(this.form);        
-        AddHorzForm( this.form, "Checkbox", [["type", "checkbox"], ["name", "checked"], ["id", "checked"]]);
+        AddHorzForm( this.form, "Checkbox 1", [["type", "checkbox"], ["name", "checked1"], ["id", "checked1"]]);
+        AddHorzForm( this.form, "Checkbox 2", [["type", "checkbox"], ["name", "checked2"], ["id", "checked2"]]);
+        AddHorzForm( this.form, "Checkbox 3", [["type", "checkbox"], ["name", "checked3"], ["id", "checked3"]]);
         AddBr(this.form);
         AddHorzForm( this.form, null, [["type", "button"], ["id", "id"], ["name", "submit"], ["value", "Submit"],["class", "wrap"], ["onclick", funct]]);
 

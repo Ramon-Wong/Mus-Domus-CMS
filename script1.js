@@ -2,7 +2,7 @@ var Pages       = ["Page 1", "button2", "button3", "button4", "Config"];
 var Functions   = [funct1, funct2, funct3, funct4, funct5];
 var content     = document.getElementById("content").getElementsByClassName("wrap")[0];
 fMenu           = new FormMenu();
-tMenu           = new _FormMenu();
+tMenu           = new _FormMenu([["name", "login_forms"], ["method", "post"], ["style", " border: 1px solid black; padding: 10px; width: 305px;"]]);
 
 var key         = sessionStorage.getItem("key");
 
@@ -44,16 +44,8 @@ function SetLogin(){
         }else{
             // fMenu.LoginForm("ShowStuff()");
 
-
-
-
             tMenu.ConfigForm(() => {});
 
-
-
-
-
-            
         }        
     });
 }
