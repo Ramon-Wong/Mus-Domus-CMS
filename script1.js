@@ -41,7 +41,8 @@ function SetLogin(){
         if(data["login"] == "true"){
             content.innerHTML =  "No need, you're already logged in";
         }else{
-            fMenu.LoginForm("ShowStuff()");
+            // fMenu.LoginForm("ShowStuff()");
+            fMenu.ConfigForm(() => {});
         }        
     });
 }
