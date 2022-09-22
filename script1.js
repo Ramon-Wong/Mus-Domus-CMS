@@ -2,6 +2,7 @@ var Pages       = ["Page 1", "button2", "button3", "button4", "Config"];
 var Functions   = [funct1, funct2, funct3, funct4, funct5];
 var content     = document.getElementById("content").getElementsByClassName("wrap")[0];
 fMenu           = new FormMenu();
+tMenu           = new _FormMenu();
 
 var key         = sessionStorage.getItem("key");
 
@@ -42,7 +43,17 @@ function SetLogin(){
             content.innerHTML =  "No need, you're already logged in";
         }else{
             // fMenu.LoginForm("ShowStuff()");
-            fMenu.ConfigForm(() => {});
+
+
+
+
+            tMenu.ConfigForm(() => {});
+
+
+
+
+
+            
         }        
     });
 }
