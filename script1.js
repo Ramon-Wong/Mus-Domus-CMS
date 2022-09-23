@@ -1,15 +1,28 @@
 var Pages       = ["Page 1", "button2", "button3", "button4", "Config"];
 var Functions   = [funct1, funct2, funct3, funct4, funct5];
 var content     = document.getElementById("content").getElementsByClassName("wrap")[0];
-fMenu           = new FormMenu();
 tMenu           = new _FormMenu([["name", "login_forms"], ["method", "post"], ["style", " border: 1px solid black; padding: 10px; width: 305px;"]]);
 
 var key         = sessionStorage.getItem("key");
 
 
 
+function EchoStuff(){
+    var formData = new FormData(tMenu.GetForm());                   
+    var object = {};
+
+    object["key"] = key;
+    formData.forEach(function(value, key){
+        object[key] = value;
+    });    
+
+    //copilot, console log object in a table
+    console.table(object);
+}
+
+
 function ShowStuff(){
-    var formData = new FormData(tMenu.GetForm());                   // <= ???
+    var formData = new FormData(tMenu.GetForm());                   
     var object = {};
 
     object["key"] = key;
@@ -22,7 +35,8 @@ function ShowStuff(){
         console.log( data["message"]);
 
         if( data["message"] == "Login Successfull"){
-            content.innerHTML = "You're logged in";
+            // content.innerHTML = "You're logged in";
+            tMenu.ConfigForm("EchoStuff()");
         }else{
 
         }
@@ -41,6 +55,7 @@ function SetLogin(){
         
         if(data["login"] == "true"){
             content.innerHTML =  "No need, you're already logged in";
+            tMenu.ConfigForm("EchoStuff()");
         }else{
             // processed forms and then send to heaven
             tMenu.LoginForm("ShowStuff()");
@@ -48,7 +63,6 @@ function SetLogin(){
         }        
     });
 }
-
 
 
 var Nav         = document.getElementsByTagName("nav")[0];
@@ -74,10 +88,10 @@ for(var i = 0; i < Pages.length; i++){
 }
 
 
-function funct1(){  RequestPage("listener.php", Payload("page", 1), (data) => { content.innerHTML = ''; console.log(data);});}
-function funct2(){  RequestPage("listener.php", Payload("page", 2), (data) => { content.innerHTML = ''; console.log(data);});}
-function funct3(){  RequestPage("listener.php", Payload("page", 3), (data) => { content.innerHTML = ''; console.log(data);});}
-function funct4(){  RequestPage("listener.php", Payload("page", 4), (data) => { content.innerHTML = ''; console.log(data);});}
+function funct1(){  RequestPage("listener.php", Payload("page", 1), (data) => { content.innerHTML = ''; console.table(data);});}
+function funct2(){  RequestPage("listener.php", Payload("page", 2), (data) => { content.innerHTML = ''; console.table(data);});}
+function funct3(){  RequestPage("listener.php", Payload("page", 3), (data) => { content.innerHTML = ''; console.table(data);});}
+function funct4(){  RequestPage("listener.php", Payload("page", 4), (data) => { content.innerHTML = ''; console.table(data);});}
 function funct5(){  SetLogin();}
 
     

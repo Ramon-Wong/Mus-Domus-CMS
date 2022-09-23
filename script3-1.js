@@ -8,6 +8,13 @@ function _FormMenu(_array){
     this.CleanForm  = () => { this.form.innerHTML = "";}
     var AddBr       = (form) => { form.appendChild( document.createElement("br")); }
 
+
+    var MakeWrap    = () => { 
+        var wrap =  document.createElement("wrap");
+        wrap.setAttribute("class", "lblwrap"); 
+        return wrap;
+    }
+
     var AddLbl = (name) => { 
         var lbl    = document.createElement("label");
 
@@ -26,12 +33,23 @@ function _FormMenu(_array){
     }
 
 
+    var _AddAtribute = (array) =>{
+        var input   = document.createElement(array[0]);
+
+        for( var x = 1; x < array.length; x++){
+            input.setAttribute(array[x][0], array[x][1]);
+        }
+
+        return input;
+    }
+
+
     function AddHorzForm( form, name, array){
+        var wrap = MakeWrap();
 
-        wrap = document.createElement("wrap");
-        wrap.setAttribute("class", "lblwrap");
-
-        if( name != null){  wrap.appendChild( AddLbl(name)).setAttribute("style", "display: inline-block;");    }
+        if( name != null){  
+            wrap.appendChild( AddLbl(name)).setAttribute("style", "display: inline-block;");    
+        }
         wrap.appendChild( AddAttribute("input", array)).setAttribute("style", "display: inline-block;");
 
         form.appendChild(wrap);
@@ -39,12 +57,28 @@ function _FormMenu(_array){
 
 
     function AddHorzArea( form, name, array){
-
-        wrap = document.createElement("wrap");
-        wrap.setAttribute("class", "lblwrap");
+        var wrap = MakeWrap();
 
         wrap.appendChild( AddLbl(name)).setAttribute("style", "display: block;");
         wrap.appendChild( AddAttribute("textarea", array)).setAttribute("style", "display: inline-block; width: 300px;");
+
+        form.appendChild(wrap);
+    }
+
+
+    function AddHorzDropdown( form, name, array, list){
+        var wrap        = MakeWrap();
+        var selectList  = AddAttribute("select", array);
+
+        for(let x in list){
+            var option      = document.createElement("option");
+            option.value    = list[x];
+            option.text     = list[x];
+            selectList.appendChild(option);
+        }
+
+        wrap.appendChild( AddLbl(name)).setAttribute("style", "display: block;");
+        wrap.appendChild( selectList).setAttribute("style", "display: inline-block; width: 300px;");
 
         form.appendChild(wrap);
     }
@@ -55,23 +89,24 @@ function _FormMenu(_array){
         content.innerHTML = "";
         this.CleanForm();
 
-        wrap = document.createElement("wrap");
-        wrap.setAttribute("class", "lblwrap");
+        var wrap = MakeWrap();
 
-        AddHorzForm( this.form, "Title", [["type", "text"], ["name", "Test"], ["id", "Test"]]);
-        AddHorzForm( this.form, "Subtitle", [["type", "text"], ["name", "loop"], ["id", "loop"]]);
+        AddHorzForm( this.form, "Title", [["type", "text"], ["name", "title"], ["id", "title"]]);
+        AddHorzForm( this.form, "Subtitle", [["type", "text"], ["name", "subtitle"], ["id", "subtitle"]]);
         AddBr(this.form);        
-        AddHorzForm( this.form, "old Password", [["type", "text"], ["name", "Test"], ["id", "Test"]]);
-        AddHorzForm( this.form, "New Password", [["type", "text"], ["name", "loop"], ["id", "loop"]]);
-        AddHorzForm( this.form, "New Password", [["type", "text"], ["name", "loop"], ["id", "loop"]]);
+        AddHorzForm( this.form, "eMail", [["type", "text"], ["name", "usermail"], ["id", "usermail"]]);
+        AddHorzForm( this.form, "old Password", [["type", "password"], ["name", "old Password"], ["id", "OldP1"]]);
+        AddHorzForm( this.form, "New Password", [["type", "password"], ["name", "new Password"], ["id", "NewP1"]]);
+        AddHorzForm( this.form, "New Password", [["type", "password"], ["name", "new Password"], ["id", "NewP2"]]);
         AddBr(this.form);        
-        AddHorzArea( this.form, "Footer", [["type", "text"], ["name", "area"], ["id", "area"]]);
+        AddHorzArea( this.form, "Footer", [["type", "text"], ["name", "footer_message"], ["id", "footer_message"]]);
 
-        AddBr(this.form);        
         AddHorzForm( this.form, "Checkbox 1", [["type", "checkbox"], ["name", "checked1"], ["id", "checked1"]]);
         AddHorzForm( this.form, "Checkbox 2", [["type", "checkbox"], ["name", "checked2"], ["id", "checked2"]]);
         AddHorzForm( this.form, "Checkbox 3", [["type", "checkbox"], ["name", "checked3"], ["id", "checked3"]]);
         AddBr(this.form);
+        AddHorzDropdown( this.form, "Dropbox", [["name", "dropdown"], ["id", "dropdown"]], ["Mercedes", "Toyota", "Mercedes", "Honda", "Mazda"]);        
+        AddBr(this.form);        
         AddHorzForm( this.form, null, [["type", "button"], ["id", "id"], ["name", "submit"], ["value", "Submit"],["class", "wrap"], ["onclick", funct]]);
 
         content.appendChild(this.form); 
@@ -91,5 +126,4 @@ function _FormMenu(_array){
 
         content.appendChild(this.form);        
     }
-
 }
