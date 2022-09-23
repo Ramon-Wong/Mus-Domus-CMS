@@ -25,14 +25,6 @@ function _FormMenu(_array){
         return lbl;
     }
 
-    var AddAttribute = (type, array) =>{
-        var input   = document.createElement(type);
-
-        for(let x in array){    input.setAttribute(array[x][0], array[x][1]);    }
-        return input;
-    }
-
-
 
     var _AddAttribute = (array) =>{
         var input   = document.createElement(array[0][1]);
@@ -48,28 +40,18 @@ function _FormMenu(_array){
     function AddHorzForm( form, name, array){
         var wrap = MakeWrap();
 
-        if( name != null){  
-            wrap.appendChild( AddLbl(name)).setAttribute("style", "display: inline-block;");    
-        }
+        if( name != null){  wrap.appendChild( AddLbl(name)).setAttribute("style", "display: inline-block;"); }
         wrap.appendChild( _AddAttribute(array)).setAttribute("style", "display: inline-block;");
 
         form.appendChild(wrap);
-    }
 
-
-    function AddHorzArea( form, name, array){
-        var wrap = MakeWrap();
-
-        wrap.appendChild( AddLbl(name)).setAttribute("style", "display: block;");
-        wrap.appendChild( AddAttribute("textarea", array)).setAttribute("style", "display: inline-block; width: 300px;");
-
-        form.appendChild(wrap);
+        this.AddBr = function(){  }
     }
 
 
     function AddHorzDropdown( form, name, array, list){
         var wrap        = MakeWrap();
-        var selectList  = AddAttribute("select", array);
+        var selectList  = _AddAttribute(array);
 
         for(let x in list){
             var option      = document.createElement("option");
@@ -106,7 +88,7 @@ function _FormMenu(_array){
         AddHorzForm( this.form, "Checkbox 2", [["input", "input"],["type", "checkbox"], ["name", "checked2"], ["id", "checked2"]]);
         AddHorzForm( this.form, "Checkbox 3", [["input", "input"],["type", "checkbox"], ["name", "checked3"], ["id", "checked3"]]);
         AddBr(this.form);
-        AddHorzDropdown( this.form, "Dropbox", [["name", "dropdown"], ["id", "dropdown"]], ["Mercedes", "Toyota", "Mercedes", "Honda", "Mazda"]);        
+        AddHorzDropdown( this.form, "Dropbox", [["select", "select"], ["name", "dropdown"], ["id", "dropdown"]], ["Mercedes", "Toyota", "Mercedes", "Honda", "Mazda"]);        
         AddBr(this.form);        
         AddHorzForm( this.form, null, [["input", "input"],["type", "button"], ["id", "id"], ["name", "submit"], ["value", "Submit"],["class", "wrap"], ["onclick", funct]]);
 
