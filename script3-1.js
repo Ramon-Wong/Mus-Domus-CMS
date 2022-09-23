@@ -100,7 +100,7 @@ function _FormMenu(_array){
         AddHorzForm( this.form, "New Password", [["input", "input"],["type", "password"], ["name", "new Password"], ["id", "NewP1"]]);
         AddHorzForm( this.form, "New Password", [["input", "input"],["type", "password"], ["name", "new Password"], ["id", "NewP2"]]);
         AddBr(this.form);        
-        AddHorzArea( this.form, "Footer", [["type", "text"], ["name", "footer_message"], ["id", "footer_message"]]);
+        AddHorzForm( this.form, "Footer", [["textarea", "textarea"], ["type", "text"], ["name", "footer_message"], ["id", "footer_message"]]);
 
         AddHorzForm( this.form, "Checkbox 1", [["input", "input"],["type", "checkbox"], ["name", "checked1"], ["id", "checked1"]]);
         AddHorzForm( this.form, "Checkbox 2", [["input", "input"],["type", "checkbox"], ["name", "checked2"], ["id", "checked2"]]);
