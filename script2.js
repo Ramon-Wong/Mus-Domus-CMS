@@ -1,6 +1,5 @@
 
 
-
 var Payload = ( type, value) => {
 
     this.obj = {};
@@ -30,8 +29,6 @@ function RequestPage( path, string, callback){
 function CheckAuthentication( callback){
     ReadFetch("listener.php", Payload("Authentication", 0), callback);
 }
-
-
 
 
 /*  Validate Email  */

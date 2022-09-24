@@ -6,7 +6,6 @@ tMenu           = new _FormMenu([["name", "login_forms"], ["method", "post"], ["
 var key         = sessionStorage.getItem("key");
 
 
-
 function EchoStuff(){
     var formData = new FormData(tMenu.GetForm());                   
     var object = {};
@@ -16,7 +15,6 @@ function EchoStuff(){
         object[key] = value;
     });    
 
-    //copilot, console log object in a table
     console.table(object);
 }
 
