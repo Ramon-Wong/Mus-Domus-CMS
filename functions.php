@@ -52,7 +52,6 @@
         return json_encode($data);
     }
 
-
     // usage:
     // $encrypted = cryptoJsAesEncrypt("my passphrase", "value to encrypt");
     // $decrypted = cryptoJsAesDecrypt("my passphrase", $encrypted);
