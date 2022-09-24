@@ -38,7 +38,6 @@
     </main>
 
     <footer>    
-
         <div class="wrap">    
             Footer Section!!
         </div>   
