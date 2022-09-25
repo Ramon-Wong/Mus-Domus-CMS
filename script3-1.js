@@ -15,6 +15,7 @@ function _FormMenu(_array){
         return wrap;
     }
 
+    
     var AddLbl = (name) => { 
         var lbl    = document.createElement("label");
 
@@ -71,13 +72,11 @@ function _FormMenu(_array){
 
         content.innerHTML = "";
         this.CleanForm();
-
-        var wrap = MakeWrap();
         
         AddHorzForm( this.form, "Title", [["input", "input"],["type", "text"], ["name", "title"], ["id", "title"]]);
         AddHorzForm( this.form, "Subtitle", [["input", "input"],["type", "text"], ["name", "subtitle"], ["id", "subtitle"]]);
         AddBr(this.form);        
-        AddHorzForm( this.form, "eMail", [["input", "input"],["type", "text"], ["name", "usermail"], ["id", "usermail"]]);
+        AddHorzForm( this.form, "eMail", [["input", "input"],["type", "text"], ["name", "email"], ["id", "email"]]);
         AddHorzForm( this.form, "old Password", [["input", "input"],["type", "password"], ["name", "old Password"], ["id", "OldP1"]]);
         AddHorzForm( this.form, "New Password", [["input", "input"],["type", "password"], ["name", "new Password"], ["id", "NewP1"]]);
         AddHorzForm( this.form, "New Password", [["input", "input"],["type", "password"], ["name", "new Password"], ["id", "NewP2"]]);

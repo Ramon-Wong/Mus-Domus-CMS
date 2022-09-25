@@ -6,35 +6,40 @@ tMenu           = new _FormMenu([["name", "login_forms"], ["method", "post"], ["
 var key         = sessionStorage.getItem("key");
 
 
-function EchoStuff(){
+// function EchoStuff(){
+//     var formData = new FormData(tMenu.GetForm());                   
+//     var object = {};
+
+//     object["key"] = key;
+//     formData.forEach(function(value, key){
+//         object[key] = value;
+//     });    
+
+//     // check if object is a string
+//     if( typeof object["email"] == "string" && object["email"].length > 0){
+//         _ValidateEmail( object["email"]) ? console.log("Valid email") : console.log("Not an email");
+//     }
+//     console.table(object);
+// }
+
+
+function ShowStuff(type){
     var formData = new FormData(tMenu.GetForm());                   
     var object = {};
 
     object["key"] = key;
+    object["type"] = type;
     formData.forEach(function(value, key){
         object[key] = value;
-    });    
+    });
 
     console.table(object);
-}
-
-
-function ShowStuff(){
-    var formData = new FormData(tMenu.GetForm());                   
-    var object = {};
-
-    object["key"] = key;
-    object["type"] = "login";
-    formData.forEach(function(value, key){
-        object[key] = value;
-    });    
 
     function callback(data){
-        console.log( data["message"]);
-
+        
         if( data["message"] == "Login Successfull"){
             // content.innerHTML = "You're logged in";
-            tMenu.ConfigForm("EchoStuff()");
+            tMenu.ConfigForm("ShowStuff('config')");
         }else{
 
         }
@@ -53,10 +58,10 @@ function SetLogin(){
         
         if(data["login"] == "true"){
             content.innerHTML =  "No need, you're already logged in";
-            tMenu.ConfigForm("EchoStuff()");
+            tMenu.ConfigForm("ShowStuff('config')");
         }else{
             // processed forms and then send to heaven
-            tMenu.LoginForm("ShowStuff()");
+            tMenu.LoginForm("ShowStuff('login')");
             // fMenu.LoginForm("ShowStuff()");
         }        
     });
