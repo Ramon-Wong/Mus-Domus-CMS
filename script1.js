@@ -6,23 +6,6 @@ tMenu           = new _FormMenu([["name", "login_forms"], ["method", "post"], ["
 var key         = sessionStorage.getItem("key");
 
 
-// function EchoStuff(){
-//     var formData = new FormData(tMenu.GetForm());                   
-//     var object = {};
-
-//     object["key"] = key;
-//     formData.forEach(function(value, key){
-//         object[key] = value;
-//     });    
-
-//     // check if object is a string
-//     if( typeof object["email"] == "string" && object["email"].length > 0){
-//         _ValidateEmail( object["email"]) ? console.log("Valid email") : console.log("Not an email");
-//     }
-//     console.table(object);
-// }
-
-
 function ShowStuff(type){
     var formData = new FormData(tMenu.GetForm());                   
     var object = {};
