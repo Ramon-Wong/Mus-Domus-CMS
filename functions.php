@@ -1,18 +1,18 @@
 <?php
 
 
-    function CheckFiles($filepath){
+    function CheckFiles($filepath, $data){
         if(!file_exists($filepath)){
-            echo "<script>console.log(' index.php". $filepath ." does not excist')</script>"; 
+            echo "<script>console.log(' index.php". $filepath ." does not exist')</script>"; 
 
             touch($filepath);
             chmod($filepath, 0600);
             $file = fopen($filepath, "w+");
-            fwrite($file, json_encode($jsondata));
+            fwrite($file, json_encode($data));
             fclose($file);
         }
         else{
-            echo "<script>console.log(' index.php". $filepath ." excist')</script>"; 
+            echo "<script>console.log(' index.php". $filepath ." exist')</script>"; 
         }
     }
 

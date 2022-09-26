@@ -2,24 +2,25 @@
     include 'functions.php';
     include 'header.php'; 
 
-    $filepath       = "data/data.json";    
-    $jsondata       = array("email"=> "admin@domain.com", "password"=> "admin", "key"=> "1234567890");
+    $filepath       = array("data/data.json", 
+                            "data/frontend.json", 
+                            "data/pages.json");      
+
+    $jsondata       = array("email"=> "admin@domain.com", 
+                            "password"=> "admin", 
+                            "key"=> "1234567890");
+
+    $frontdata      = array("key"               => "1234567890", 
+                            "title"             => "TestCMS", 
+                            "subtitle"          => "Nothing to see here",
+                            "footer_message"    => "This is a test CMS");
 
     // unlink($filepath);
 
-    if(!file_exists($filepath)){
+    CheckFiles($filepath[0], $jsondata);
+    CheckFiles($filepath[1], $frontdata);
 
-        echo "<script>console.log('File does not excist')</script>";
-
-        touch($filepath);
-        chmod($filepath, 0600);
-        $file = fopen($filepath, "w+");
-        fwrite($file, json_encode($jsondata));
-
-        fclose($file);
-    }
-
-    $file           = fopen($filepath, "r");
+    $file           = fopen($filepath[0], "r");
     $data           = fread($file, filesize($filepath));
     $jData          = json_decode($data, true);
     fclose($file);
