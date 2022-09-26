@@ -7,15 +7,13 @@ $str            = '{"message":"Hello World"}';
 
 $return;
 $consoleMSG     = "Console Messages";
-$file;
 
 //delete old config file
 $filepath       = array("data/data.json", "data/pages.json");
 
 
     $file           = fopen($filepath[0], "r");
-    $data           = fread($file, filesize($filepath[0]));
-    $jData          = json_decode($data, true);
+    $jData          = json_decode( fread($file, filesize($filepath[0])), true);
     fclose($file);
 
     // unlink($filepath);
