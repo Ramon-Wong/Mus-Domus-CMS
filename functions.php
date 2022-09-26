@@ -1,9 +1,18 @@
 <?php
 
+    function OpenFrontEnd($filepath){
+        $file           = fopen($filepath, "r");
+        $data           = fread($file, filesize($filepath));
+        // convert $data into a json object
+        $jData          = json_decode($data, true);
+        fclose($file);
+        return $jData;
+    }
+
 
     function CheckFiles($filepath, $data){
         if(!file_exists($filepath)){
-            echo "<script>console.log(' index.php". $filepath ." does not exist')</script>"; 
+            echo "<script>console.log(' index.php ". $filepath ." does not exist')</script>"; 
 
             touch($filepath);
             chmod($filepath, 0600);
@@ -12,7 +21,7 @@
             fclose($file);
         }
         else{
-            echo "<script>console.log(' index.php". $filepath ." exist')</script>"; 
+            echo "<script>console.log(' index.php ". $filepath ." exist')</script>"; 
         }
     }
 

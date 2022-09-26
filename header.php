@@ -23,12 +23,7 @@
 </head>
   
 <body>
-    <header>
-        <div class="wrap">
-            <div class="head1">TestCMS</div>
-            <div class="head2">Nothing to see here</div>
-        </div>    
-    </header>
+
 
     <nav class="menu"></nav>
     
