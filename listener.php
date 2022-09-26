@@ -2,19 +2,19 @@
 
 $requestPayload = file_get_contents("php://input");
 $obj            = json_decode($requestPayload);
-
 $str            = '{"message":"Hello World"}';
-
 $return;
 $consoleMSG     = "Console Messages";
 
 //delete old config file
 $filepath       = array("data/data.json", "data/config.json", "data/pages.json");
 
+$file           = fopen($filepath[0], "r");
+$jData          = json_decode( fread($file, filesize($filepath[0])), true);
+fclose($file);
 
-    $file           = fopen($filepath[0], "r");
-    $jData          = json_decode( fread($file, filesize($filepath[0])), true);
-    fclose($file);
+
+
 
     // unlink($filepath);
 

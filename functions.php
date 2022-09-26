@@ -1,5 +1,23 @@
 <?php
 
+
+    function CheckFiles($filepath){
+        if(!file_exists($filepath)){
+            echo "<script>console.log(' index.php". $filepath ." does not excist')</script>"; 
+
+            touch($filepath);
+            chmod($filepath, 0600);
+            $file = fopen($filepath, "w+");
+            fwrite($file, json_encode($jsondata));
+            fclose($file);
+        }
+        else{
+            echo "<script>console.log(' index.php". $filepath ." excist')</script>"; 
+        }
+    }
+
+
+
     function generateKey(){
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $key = array();
