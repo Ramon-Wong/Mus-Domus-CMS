@@ -9,7 +9,7 @@ $return;
 $consoleMSG     = "Console Messages";
 
 //delete old config file
-$filepath       = array("data/data.json", "data/pages.json");
+$filepath       = array("data/data.json", "data/config.json", "data/pages.json");
 
 
     $file           = fopen($filepath[0], "r");
