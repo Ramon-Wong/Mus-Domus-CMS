@@ -1,5 +1,15 @@
 
 
+var SetupDom = (tagname, funct){
+
+    var dom     = document.getElementByTagName(tagname);
+    var wrap    = document.createElement("div");
+    wrap.setAttribute("class", "wrap");
+    wrap.innerHTML = funct
+    dom.appendChild(wrap);
+}
+
+
 var Payload = ( type, value) => {
 
     this.obj = {};

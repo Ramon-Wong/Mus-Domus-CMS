@@ -23,7 +23,6 @@
 </head>
   
 <body>
-
-
+    <header></header>
     <nav class="menu"></nav>
     

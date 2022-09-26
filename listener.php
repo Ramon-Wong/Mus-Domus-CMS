@@ -69,12 +69,13 @@ fclose($file);
             $str = json_encode($msg);
         break;    
 
-        case: "config":
+        case "config":
             // $obj->key;
             // $obj->title;
             // $obj->subtitle;
             // $obj->footer_message;
-        break;     
+        break;  
+
 
         default:
             $str = '{"message":"default"}';

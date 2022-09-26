@@ -37,16 +37,10 @@
         </div>
 
     </main>
-
-    <footer>    
-        <div class="wrap">    
-            Footer Section!!
-        </div>   
-        <script src="script3-1.js"></script>
-        <script src="script2.js"></script>
-        <script src="script1.js"></script>
-    
-    </footer>    
+    <footer></footer>    
 </body>
 
+    <script src="script3-1.js"></script>
+    <script src="script2.js"></script>
+    <script src="script1.js"></script>
 </html>
