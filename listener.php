@@ -18,8 +18,6 @@ $fData          = json_decode( fread($file, filesize($filepath[1])), true);
 fclose($file);
 
 
-
-
     // unlink($filepath);
 
     switch($obj->type){
@@ -61,7 +59,6 @@ fclose($file);
         break;
 
         case "Authentication":
-
             $msg;
 
             if($jData[key] == $obj->key){
@@ -75,8 +72,6 @@ fclose($file);
 
         case "FrontEnd":
             $str = json_encode( array("title" => $fData["title"], "subtitle" => $fData["subtitle"], "footer_message" => $fData["footer_message"]));
-            // I need a data dump of config.json
-
         break;    
 
         case "config":
@@ -85,7 +80,6 @@ fclose($file);
             // $obj->subtitle;
             // $obj->footer_message;
         break;  
-
 
         default:
             $str = '{"message":"default"}';

@@ -1,34 +1,18 @@
 <?php
 
-    // function OpenFrontEnd($filepath){
-    //     $file           = fopen($filepath, "r");
-    //     $data           = fread($file, filesize($filepath));
-    //     // convert $data into a json object
-    //     $jData          = json_decode($data, true);
-    //     fclose($file);
-    //     return $jData;
-    // }
-
-
     function CheckFiles($filepath, $data){
         if(!file_exists($filepath)){
-            // echo "<script>console.log(' index.php ".$filepath." does not exist')</script>"; 
-
+    
             touch($filepath);
             chmod($filepath, 0600);
             $file = fopen($filepath, "w+");
             fwrite($file, json_encode($data));
             fclose($file);
         }
-        // echo "<script>console.log(' index.php ". $filepath ." exist')</script>";    
 
         $_jData          = json_decode( fread( fopen($filepath, "r"), filesize($filepath)), true);
-        // echo "<script>console.log(' index.php ". var_dump($_jData) ." exist')</script>";
         return $_jData;        
     }
-
-    
-
 
 
     function generateKey(){
@@ -66,6 +50,7 @@
         return json_decode($data, true);
     }
 
+    
     function cryptoJsAesEncrypt($passphrase, $value){
         $salt               = openssl_random_pseudo_bytes(8);
         $salted             = '';

@@ -43,9 +43,7 @@ function SetLogin(){
             content.innerHTML =  "No need, you're already logged in";
             tMenu.ConfigForm("ShowStuff('config')");
         }else{
-            // processed forms and then send to heaven
             tMenu.LoginForm("ShowStuff('login')");
-            // fMenu.LoginForm("ShowStuff()");
         }        
     });
 }
@@ -58,26 +56,13 @@ var dObject;
 object["key"] = key;
 object["type"] = "FrontEnd";
 
-
-
 var Setup_Headers = function(data){
-    
-    // console.log(data["title"]);
-
     SetupDom("header", data["title"], data["subtitle"]);
     SetupDom("footer", null, data["footer_message"]);
 }
 
+RequestPage("listener.php", object, (data)=>{console.table(data); Setup_Headers(data)});
 
-RequestPage("listener.php", object, (data)=>{console.log(data); Setup_Headers(data)});
-
-
-//create a 2D array to hold Title, innerHTML, and attributes
-// 
-
-
-
-// SetupDom("footer", "stuff");
 
 var Nav         = document.getElementsByTagName("nav")[0];
 
@@ -89,7 +74,6 @@ for(var i = 0; i < Pages.length; i++){
     button.setAttribute("onclick", Functions[i].name + "()");
     button.innerHTML = Pages[i];
     
-
     if( i == Pages.length - 1){
         var wrap = document.createElement("div");
         wrap.setAttribute("class", "menu-log");
@@ -107,5 +91,3 @@ function funct2(){  RequestPage("listener.php", Payload("page", 2), (data) => { 
 function funct3(){  RequestPage("listener.php", Payload("page", 3), (data) => { content.innerHTML = ''; console.table(data);});}
 function funct4(){  RequestPage("listener.php", Payload("page", 4), (data) => { content.innerHTML = ''; console.table(data);});}
 function funct5(){  SetLogin();}
-
-    
