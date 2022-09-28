@@ -15,11 +15,12 @@
                             "subtitle"          => "Nothing to see here",
                             "footer_message"    => "This is a test CMS");
 
-    // unlink($filepath[0]);
-    // unlink($filepath[1]);    
 
     CheckFiles( $filepath[0], $frontdata);
     CheckFiles( $filepath[1], $frontdata);
+
+    // unlink($filepath[0]);
+    // unlink($filepath[1]);    
     
     // echo "<script>console.log('stuff') </script>";
 ?>
