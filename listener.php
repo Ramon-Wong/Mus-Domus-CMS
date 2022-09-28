@@ -7,10 +7,14 @@ $return;
 $consoleMSG     = "Console Messages";
 
 //delete old config file
-$filepath       = array("data/data.json", "data/config.json", "data/pages.json");
+$filepath       = array("data/data.json", "data/frontend.json", "data/pages.json");
 
 $file           = fopen($filepath[0], "r");
 $jData          = json_decode( fread($file, filesize($filepath[0])), true);
+fclose($file);
+
+$file           = fopen($filepath[1], "r");
+$fData          = json_decode( fread($file, filesize($filepath[1])), true);
 fclose($file);
 
 
@@ -67,6 +71,12 @@ fclose($file);
             }
 
             $str = json_encode($msg);
+        break;    
+
+        case "FrontEnd":
+            $str = json_encode( array("title" => $fData["title"], "subtitle" => $fData["subtitle"], "footer_message" => $fData["footer_message"]));
+            // I need a data dump of config.json
+
         break;    
 
         case "config":

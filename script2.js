@@ -1,11 +1,17 @@
 
 
-var SetupDom = (tagname, funct){
+var SetupDom = (tagname, str1, str2) => {
+    var dom         = document.getElementsByTagName(tagname)[0]
+    var wrap        = document.createElement("div");
+    var title       = document.createElement("h1");
+    var subtitle    = document.createElement("p");
 
-    var dom     = document.getElementByTagName(tagname);
-    var wrap    = document.createElement("div");
+    title.innerHTML     = str1;    
+    subtitle.innerHTML  = str2;
+
+    wrap.appendChild(title);
+    wrap.appendChild(subtitle);
     wrap.setAttribute("class", "wrap");
-    wrap.innerHTML = funct
     dom.appendChild(wrap);
 }
 

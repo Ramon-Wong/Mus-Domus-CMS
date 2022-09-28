@@ -51,6 +51,34 @@ function SetLogin(){
 }
 
 
+
+var object = {};
+var dObject;
+
+object["key"] = key;
+object["type"] = "FrontEnd";
+
+
+
+var Setup_Headers = function(data){
+    
+    // console.log(data["title"]);
+
+    SetupDom("header", data["title"], data["subtitle"]);
+    SetupDom("footer", null, data["footer_message"]);
+}
+
+
+RequestPage("listener.php", object, (data)=>{console.log(data); Setup_Headers(data)});
+
+
+//create a 2D array to hold Title, innerHTML, and attributes
+// 
+
+
+
+// SetupDom("footer", "stuff");
+
 var Nav         = document.getElementsByTagName("nav")[0];
 
 for(var i = 0; i < Pages.length; i++){
